@@ -33,23 +33,27 @@
 
 - (void)searchArtistsWithName:(NSString *)name {
     NSString *urlRequest = [NSString stringWithFormat:@"http://api.deezer.com/search/artist?q=%@", name];
-    NSURLRequest *APIRequest = [NSURLRequest requestWithURL:[NSURL URLWithString:urlRequest]];
-
-    [NSURLConnection sendAsynchronousRequest:APIRequest
-                                       queue:[NSOperationQueue mainQueue]
-                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
-                               if (connectionError) {
-                                   // TODO
-                               }
-                               else {
-                                   NSDictionary *retData = [NSJSONSerialization JSONObjectWithData:data
-                                                                                           options:kNilOptions
-                                                                                             error:&connectionError];
-                                   NSLog(@"%@", [retData objectForKey:@"data"]);
-                                   self.artists = [retData objectForKey:@"data"];
-                                   [self.collectionView reloadData];
-                               }
-                           }];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    [[session dataTaskWithURL:[NSURL URLWithString:urlRequest]
+            completionHandler:^(NSData *data,
+                                NSURLResponse *response,
+                                NSError *error) {
+                if (error) {
+                    // TODO
+                }
+                else {
+                    NSDictionary *retData = [NSJSONSerialization JSONObjectWithData:data
+                                                                            options:kNilOptions
+                                                                              error:&error];
+                    NSLog(@"%@", [retData objectForKey:@"data"]);
+                    self.artists = [retData objectForKey:@"data"];
+                    
+                    dispatch_sync(dispatch_get_main_queue(),^{
+                        [self.collectionView reloadData];
+                    });
+                }
+            }] resume];
 }
 
 #pragma - UISearchBarDelegate
