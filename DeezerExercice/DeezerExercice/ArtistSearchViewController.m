@@ -6,12 +6,13 @@
 
 #import "ArtistSearchViewController.h"
 #import "ArtistCollectionViewCell.h"
+#import "Artist.h"
 
 @interface ArtistSearchViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
-@property (nonatomic) NSArray *artists;
+@property (nonatomic) NSMutableArray *artists;
 
 @end
 
@@ -20,6 +21,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    self.artists = [[NSMutableArray alloc] init];
     // Do any additional setup after loading the view.
 }
 
@@ -33,6 +35,7 @@
 
 - (void)searchArtistsWithName:(NSString *)name {
     NSString *urlRequest = [NSString stringWithFormat:@"http://api.deezer.com/search/artist?q=%@", name];
+    urlRequest = [urlRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURLSession *session = [NSURLSession sharedSession];
     [[session dataTaskWithURL:[NSURL URLWithString:urlRequest]
@@ -40,16 +43,33 @@
                                 NSURLResponse *response,
                                 NSError *error) {
                 if (error) {
-                    // TODO
+                    UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Error"
+                                                                                   message:error.localizedDescription
+                                                                            preferredStyle:UIAlertControllerStyleAlert];
+                    
+                    UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"Ok" style:UIAlertActionStyleDefault
+                                                                          handler:nil];
+                    [alert addAction:defaultAction];
+                    
+                    dispatch_sync(dispatch_get_main_queue(),^{
+                        [self presentViewController:alert animated:YES completion:nil];
+                    });
+                    
+                    
+                    
+                    NSLog(@"Error : %@", error);
                 }
                 else {
                     NSDictionary *retData = [NSJSONSerialization JSONObjectWithData:data
                                                                             options:kNilOptions
                                                                               error:&error];
-                    NSLog(@"%@", [retData objectForKey:@"data"]);
-                    self.artists = [retData objectForKey:@"data"];
-                    
                     dispatch_sync(dispatch_get_main_queue(),^{
+                        for (NSDictionary* artistDictionary in [retData objectForKey:@"data"]) {
+                            Artist *artist = [[Artist alloc] initWithDictionary:artistDictionary];
+                            
+                            [self.artists addObject:artist];
+                        }
+                        
                         [self.collectionView reloadData];
                     });
                 }
@@ -78,13 +98,22 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ArtistCollectionViewCellIdentifier";
-
     ArtistCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
-    NSDictionary *artistDictionary = [self.artists objectAtIndex:indexPath.row];
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[artistDictionary objectForKey:@"picture"]]];
+    
+    Artist *artist = [self.artists objectAtIndex:indexPath.row];
+    
+    NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:artist.pictureUrl]];
     cell.artistImage.image = [UIImage imageWithData:imageData];
-    cell.artistName.text = [artistDictionary objectForKey:@"name"];
+    cell.artistName.text = artist.name;
+    
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
+{
+    Artist *artist = [self.artists objectAtIndex:indexPath.row];
+
+    NSLog(@"%@", artist.name);
 }
 
 @end

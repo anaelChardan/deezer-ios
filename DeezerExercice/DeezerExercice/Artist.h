@@ -8,9 +8,9 @@
 
 @interface Artist : NSObject
 
-@property (nonatomic) NSString *artistIdentifier;
-@property (nonatomic) NSString *artistName;
-@property (nonatomic) NSString *artistPictureUrl;
+@property (nonatomic) NSString *identifier;
+@property (nonatomic) NSString *name;
+@property (nonatomic) NSString *pictureUrl;
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary;
 
