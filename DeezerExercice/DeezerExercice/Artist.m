@@ -1,12 +1,12 @@
 //
-//  DZRArtist.m
+//  Artist.m
 //  DeezerExercice
 //  Copyright (c) 2015 Deezer. All rights reserved.
 //
 
-#import "DZRArtist.h"
+#import "Artist.h"
 
-@implementation DZRArtist
+@implementation Artist
 
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];

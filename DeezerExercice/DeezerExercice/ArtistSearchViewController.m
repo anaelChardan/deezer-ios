@@ -1,13 +1,13 @@
 //
-//  DZRArtistSearchViewController.m
+//  ArtistSearchViewController.m
 //  DeezerExercice
 //  Copyright (c) 2015 Deezer. All rights reserved.
 //
 
-#import "DZRArtistSearchViewController.h"
-#import "DZRArtistCollectionViewCell.h"
+#import "ArtistSearchViewController.h"
+#import "ArtistCollectionViewCell.h"
 
-@interface DZRArtistSearchViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface ArtistSearchViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
@@ -15,7 +15,7 @@
 
 @end
 
-@implementation DZRArtistSearchViewController
+@implementation ArtistSearchViewController
 
 - (void)viewDidLoad
 {
@@ -75,7 +75,7 @@
 {
     static NSString *CellIdentifier = @"ArtistCollectionViewCellIdentifier";
 
-    DZRArtistCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    ArtistCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     NSDictionary *artistDictionary = [self.artists objectAtIndex:indexPath.row];
     NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:[artistDictionary objectForKey:@"picture"]]];
     cell.artistImage.image = [UIImage imageWithData:imageData];

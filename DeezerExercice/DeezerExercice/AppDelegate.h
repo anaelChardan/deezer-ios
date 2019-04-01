@@ -8,8 +8,8 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
+#pragma - Properties -
 @property (nonatomic) UIWindow *window;
-
 
 @end
 
