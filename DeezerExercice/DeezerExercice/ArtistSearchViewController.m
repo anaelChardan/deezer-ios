@@ -61,6 +61,7 @@
                                                                               error:&error];
                     dispatch_sync(dispatch_get_main_queue(),^{
                         [self.artists removeAllObjects];
+                        [self.collectionView reloadData];
                         
                         for (NSDictionary* artistDictionary in [retData objectForKey:@"data"]) {
                             Artist *artist = [[Artist alloc] initWithDictionary:artistDictionary];
@@ -100,18 +101,38 @@
     
     Artist *artist = [self.artists objectAtIndex:indexPath.row];
     
-
+    cell.artistImage.alpha = 0;
+    cell.artistName.alpha = 0;
     
     dispatch_async(dispatch_get_global_queue(0,0), ^{
         NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: artist.pictureUrl]];
-        if (data == nil) { return; }
+        if (data == nil) {
+            [UIView animateWithDuration:0.2 animations:^{
+                cell.artistImage.alpha = 1;
+                
+                [cell layoutIfNeeded];
+            }];
+            
+            return;
+        }
         dispatch_async(dispatch_get_main_queue(), ^{
-
-            cell.artistImage.image = [UIImage imageWithData: data];
+            [UIView animateWithDuration:0.2 animations:^{
+                cell.artistImage.image = [UIImage imageWithData: data];
+                cell.artistImage.alpha = 1;
+                
+                [cell layoutIfNeeded];
+            }];
+            
         });
     });
     
-    cell.artistName.text = artist.name;
+    
+    [UIView animateWithDuration:0.2 animations:^{
+        cell.artistName.text = artist.name;
+        cell.artistName.alpha = 1;
+        
+        [cell layoutIfNeeded];
+    }];
     
     return cell;
 }
@@ -119,8 +140,6 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Artist *artist = [self.artists objectAtIndex:indexPath.row];
-
-    NSLog(@"%@", artist.name);
 }
 
 @end
