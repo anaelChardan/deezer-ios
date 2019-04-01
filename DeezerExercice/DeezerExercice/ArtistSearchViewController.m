@@ -54,16 +54,14 @@
                     dispatch_sync(dispatch_get_main_queue(),^{
                         [self presentViewController:alert animated:YES completion:nil];
                     });
-                    
-                    
-                    
-                    NSLog(@"Error : %@", error);
                 }
                 else {
                     NSDictionary *retData = [NSJSONSerialization JSONObjectWithData:data
                                                                             options:kNilOptions
                                                                               error:&error];
                     dispatch_sync(dispatch_get_main_queue(),^{
+                        [self.artists removeAllObjects];
+                        
                         for (NSDictionary* artistDictionary in [retData objectForKey:@"data"]) {
                             Artist *artist = [[Artist alloc] initWithDictionary:artistDictionary];
                             
@@ -102,8 +100,17 @@
     
     Artist *artist = [self.artists objectAtIndex:indexPath.row];
     
-    NSData *imageData = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString:artist.pictureUrl]];
-    cell.artistImage.image = [UIImage imageWithData:imageData];
+
+    
+    dispatch_async(dispatch_get_global_queue(0,0), ^{
+        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: artist.pictureUrl]];
+        if (data == nil) { return; }
+        dispatch_async(dispatch_get_main_queue(), ^{
+
+            cell.artistImage.image = [UIImage imageWithData: data];
+        });
+    });
+    
     cell.artistName.text = artist.name;
     
     return cell;
