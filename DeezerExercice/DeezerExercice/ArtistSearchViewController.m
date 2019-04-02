@@ -34,7 +34,7 @@
 #pragma - Search
 
 - (void)searchArtistsWithName:(NSString *)name {
-    NSString *urlRequest = [NSString stringWithFormat:@"http://api.deezer.com/search/artist?q=%@", name];
+    NSString *urlRequest = [NSString stringWithFormat:@"http://api.deezer.com/search/artist?q=%@&limit=150", name];
     urlRequest = [urlRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     
     NSURLSession *session = [NSURLSession sharedSession];
@@ -101,7 +101,9 @@
     
     Artist *artist = [self.artists objectAtIndex:indexPath.row];
     
+    cell.artistImage.image = nil;
     cell.artistImage.alpha = 0;
+    
     cell.artistName.alpha = 0;
     
     dispatch_async(dispatch_get_global_queue(0,0), ^{

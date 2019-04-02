@@ -37,8 +37,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <searchBar contentMode="redraw" misplaced="YES" placeholder="Enter an artist name" translatesAutoresizingMaskIntoConstraints="NO" id="pap-sx-raJ">
-                                <rect key="frame" x="0.0" y="64" width="600" height="44"/>
+                            <searchBar contentMode="redraw" placeholder="Enter an artist name" translatesAutoresizingMaskIntoConstraints="NO" id="pap-sx-raJ">
+                                <rect key="frame" x="0.0" y="88" width="414" height="44"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="hcQ-s9-DbK"/>
                                 </constraints>
@@ -47,8 +47,8 @@
                                     <outlet property="delegate" destination="t1i-yi-ig2" id="k6k-kZ-h7v"/>
                                 </connections>
                             </searchBar>
-                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G2z-Iq-UIH">
-                                <rect key="frame" x="0.0" y="108" width="600" height="492"/>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="G2z-Iq-UIH">
+                                <rect key="frame" x="0.0" y="132" width="414" height="764"/>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="v2j-7V-1uR">
                                     <size key="itemSize" width="80" height="120"/>
@@ -90,6 +90,7 @@
                                         <connections>
                                             <outlet property="artistImage" destination="kKI-XC-AWa" id="b8i-GL-RMi"/>
                                             <outlet property="artistName" destination="h04-Ub-2zf" id="AYg-Li-nfV"/>
+                                            <segue destination="WPd-oW-F4D" kind="show" id="802-cG-sDs"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -119,7 +120,25 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVv-6f-8ZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="745" y="164"/>
+            <point key="canvasLocation" x="813" y="161"/>
+        </scene>
+        <!--Album Details View Controller-->
+        <scene sceneID="nCS-TV-m5S">
+            <objects>
+                <viewController id="WPd-oW-F4D" customClass="AlbumDetailsViewController" customModule="DeezerExercice" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JuN-a8-smB"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nal-TS-HR1"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="vgQ-dU-7JE">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MCp-EN-qFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1606" y="161"/>
         </scene>
     </scenes>
 </document>
