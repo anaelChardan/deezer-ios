@@ -163,7 +163,7 @@
                                             <rect key="frame" x="0.0" y="80" width="414" height="350"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ekd-Sz-AIy">
-                                                    <rect key="frame" x="32" y="222.5" width="350" height="20.5"/>
+                                                    <rect key="frame" x="190.5" y="222.5" width="33.5" height="20.5"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -214,8 +214,8 @@
                                                 <constraint firstItem="Ekd-Sz-AIy" firstAttribute="centerX" secondItem="6zm-ec-jZj" secondAttribute="centerX" id="g7f-yr-4Cb"/>
                                                 <constraint firstAttribute="height" constant="350" id="hDW-fp-WSv"/>
                                                 <constraint firstItem="d3x-sh-c5X" firstAttribute="top" secondItem="Ekd-Sz-AIy" secondAttribute="bottom" constant="32" id="htM-oa-rnq"/>
-                                                <constraint firstItem="Ekd-Sz-AIy" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6zm-ec-jZj" secondAttribute="leading" constant="32" id="j1h-8Y-xK0"/>
-                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Ekd-Sz-AIy" secondAttribute="trailing" constant="32" id="lnw-ZE-DEy"/>
+                                                <constraint firstItem="Ekd-Sz-AIy" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="6zm-ec-jZj" secondAttribute="leading" constant="32" id="j1h-8Y-xK0"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Ekd-Sz-AIy" secondAttribute="trailing" constant="32" id="lnw-ZE-DEy"/>
                                                 <constraint firstItem="d3x-sh-c5X" firstAttribute="centerX" secondItem="6zm-ec-jZj" secondAttribute="centerX" id="oZg-Sc-PTn"/>
                                             </constraints>
                                         </view>
