@@ -12,6 +12,11 @@
 		207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC32252906D006F938C /* AlbumDetailsViewModel.swift */; };
 		207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */; };
 		207BDDC9225297AF006F938C /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC8225297AF006F938C /* Dependencies.swift */; };
+		5287D00622533A870068B509 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00522533A870068B509 /* Repository.swift */; };
+		5287D00822533AB30068B509 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00722533AB30068B509 /* RemoteRepository.swift */; };
+		5287D00A22533CE40068B509 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00922533CE40068B509 /* Album.swift */; };
+		5287D00C22533D2A0068B509 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00B22533D2A0068B509 /* Result.swift */; };
+		5287D00E225341370068B509 /* DZRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00D225341370068B509 /* DZRError.swift */; };
 		5C1A7D851A6558BB00092761 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D841A6558BB00092761 /* main.m */; };
 		5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D871A6558BB00092761 /* AppDelegate.m */; };
 		5C1A7D8E1A6558BB00092761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D8C1A6558BB00092761 /* Main.storyboard */; };
@@ -40,6 +45,11 @@
 		207BDDC32252906D006F938C /* AlbumDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewModel.swift; sourceTree = "<group>"; };
 		207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
 		207BDDC8225297AF006F938C /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
+		5287D00522533A870068B509 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
+		5287D00722533AB30068B509 /* RemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
+		5287D00922533CE40068B509 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
+		5287D00B22533D2A0068B509 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		5287D00D225341370068B509 /* DZRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRError.swift; sourceTree = "<group>"; };
 		5C1A7D7F1A6558BB00092761 /* DeezerExercice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeezerExercice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C1A7D831A6558BB00092761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C1A7D841A6558BB00092761 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -113,6 +123,7 @@
 				5C2E66181A67C07E00607EC5 /* Artist.h */,
 				5C2E66191A67C07E00607EC5 /* Artist.m */,
 				207BDDBE22528C67006F938C /* Track.swift */,
+				5287D00922533CE40068B509 /* Album.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -132,6 +143,8 @@
 			isa = PBXGroup;
 			children = (
 				207BDDC022528E79006F938C /* Dynamic.swift */,
+				5287D00B22533D2A0068B509 /* Result.swift */,
+				5287D00D225341370068B509 /* DZRError.swift */,
 			);
 			name = Misc;
 			sourceTree = "<group>";
@@ -148,9 +161,19 @@
 		207BDDC722529791006F938C /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
+				5287D00422533A710068B509 /* Repositories */,
 				207BDDC8225297AF006F938C /* Dependencies.swift */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		5287D00422533A710068B509 /* Repositories */ = {
+			isa = PBXGroup;
+			children = (
+				5287D00522533A870068B509 /* Repository.swift */,
+				5287D00722533AB30068B509 /* RemoteRepository.swift */,
+			);
+			name = Repositories;
 			sourceTree = "<group>";
 		};
 		5C1A7D761A6558BB00092761 = {
@@ -254,7 +277,7 @@
 		5C1A7D771A6558BB00092761 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1000;
+				LastUpgradeCheck = 1020;
 				ORGANIZATIONNAME = Deezer;
 				TargetAttributes = {
 					5C1A7D7E1A6558BB00092761 = {
@@ -270,10 +293,9 @@
 			};
 			buildConfigurationList = 5C1A7D7A1A6558BB00092761 /* Build configuration list for PBXProject "DeezerExercice" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				en,
 				Base,
 			);
@@ -313,11 +335,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5287D00A22533CE40068B509 /* Album.swift in Sources */,
 				5C1A7DAA1A65897200092761 /* ArtistSearchViewController.m in Sources */,
+				5287D00822533AB30068B509 /* RemoteRepository.swift in Sources */,
 				207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */,
+				5287D00C22533D2A0068B509 /* Result.swift in Sources */,
+				5287D00E225341370068B509 /* DZRError.swift in Sources */,
 				5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */,
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				207BDDC122528E79006F938C /* Dynamic.swift in Sources */,
+				5287D00622533A870068B509 /* Repository.swift in Sources */,
 				5C3304271A6E99B500561778 /* ArtistCollectionViewCell.m in Sources */,
 				5C2E661A1A67C07E00607EC5 /* Artist.m in Sources */,
 				207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */,
@@ -368,6 +395,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -422,6 +450,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_LOCALIZABILITY_NONLOCALIZED = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
@@ -460,6 +489,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};

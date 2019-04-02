@@ -9,23 +9,39 @@
 protocol AlbumDetailsViewModelProtocol {
     
     //MARK : - Properties -
-    var title: Dynamic<String> { get }
+    var album: Dynamic<Album> { get }
     var tracks: Dynamic<[Track]> { get }
     
     //MARK : - Methods -
-    func loadAlbumDetails()
+    func loadAlbum()
     func loadTracks()
 }
 
 class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     
     //MARK : - Properties -
-    var title = Dynamic<String>("")
+    var album = Dynamic<Album>(nil)
     var tracks = Dynamic<[Track]>([])
     
+    private let dependencies: FullDependencies
+    
+    // MARK: - Lifecycle -
+    init(dependencies: FullDependencies = Dependencies.shared) {
+        self.dependencies = dependencies
+    }
+    
     //MARK : - Methods -
-    func loadAlbumDetails() {
-        self.title.value = "Title"
+    func loadAlbum() {
+        self.dependencies
+            .repository
+            .fetchAlbums(withArtistId: 27) { result in
+                switch result {
+                case .success(let albums):
+                    self.album.value = albums.data.first
+                case .failure(let error):
+                    break
+                }
+            }
     }
     
     func loadTracks() {

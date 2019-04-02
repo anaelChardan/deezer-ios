@@ -8,7 +8,7 @@
 
 class Dynamic<T> {
     
-    typealias Listener = (T) -> Void
+    typealias Listener = (T?) -> Void
     
     var listener: Listener?
     
@@ -21,13 +21,13 @@ class Dynamic<T> {
         listener?(value)
     }
     
-    var value: T {
+    var value: T? {
         didSet {
             listener?(value)
         }
     }
     
-    init(_ v: T) {
+    init(_ v: T?) {
         value = v
     }
 }

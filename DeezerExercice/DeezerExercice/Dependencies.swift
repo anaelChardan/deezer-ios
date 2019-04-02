@@ -6,4 +6,19 @@
 //  Copyright © 2019 Deezer. All rights reserved.
 //
 
-import Foundation
+typealias FullDependencies = HasRepository
+
+final class Dependencies {
+    
+    // MARK: - Properties -
+    public static var shared = Dependencies()
+    
+    private(set) var repository: Repository
+    
+    // MARK: - Lifecycle -
+    private init() {
+        repository = RemoteRepository()
+    }
+}
+
+extension Dependencies: HasRepository { }

@@ -15,8 +15,8 @@ class AlbumDetailsViewController: UIViewController {
         didSet {
             guard let viewModel = self.viewModel else { return }
 
-            viewModel.title.bind {
-                self.title = $0
+            viewModel.album.bind {
+                self.title = $0?.title
                 
                 viewModel.loadTracks()
             }
@@ -29,6 +29,6 @@ class AlbumDetailsViewController: UIViewController {
         
         self.viewModel = AlbumDetailsViewModel()
 
-        self.viewModel?.loadAlbumDetails()
+        self.viewModel?.loadAlbum()
     }
 }
