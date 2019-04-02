@@ -7,13 +7,14 @@
 #import "SearchArtistsViewController.h"
 #import "ArtistCell.h"
 #import "Artist.h"
-#import "DeezerExercice-Swift.h"
 #import "SearchArtistsViewModel.h"
+#import "DeezerExercice-Swift.h"
 
 @interface SearchArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, SearchArtistsViewModelDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UILabel *informationLabel;
 
 @property (nonatomic) SearchArtistsViewModel *viewModel;
 
@@ -21,18 +22,100 @@
 
 @implementation SearchArtistsViewController
 
+#pragma - Outlets
+
+- (void)setCollectionView:(UICollectionView *)collectionView
+{
+    _collectionView = collectionView;
+    [_collectionView setBackgroundColor:DZRColors.purple];
+    
+    CGFloat width = UIScreen.mainScreen.bounds.size.width / 3 - 16;
+    
+    UICollectionViewFlowLayout *layout = [UICollectionViewFlowLayout new];
+    [layout setMinimumLineSpacing:12];
+    [layout setMinimumInteritemSpacing:12];
+    [layout setItemSize:CGSizeMake(width, width * 1.6)];
+    [layout setSectionInset:UIEdgeInsetsMake(8, 8, 0, 8)];
+    
+    [_collectionView setCollectionViewLayout:layout];
+}
+
+- (void)setSearchBar:(UISearchBar *)searchBar
+{
+    _searchBar = searchBar;
+    [_searchBar setBarTintColor:DZRColors.purple];
+    [_searchBar setPlaceholder:@"Enter an artist name"];
+    
+//    let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
+//
+//    textFieldInsideSearchBar?.textColor = Colors.grey
+//    textFieldInsideSearchBar?.backgroundColor = Colors.lightBlack
+    
+    UITextField *textfield = [_searchBar valueForKey:@"searchField"];
+    [textfield setTextColor:DZRColors.white];
+    [textfield setBackgroundColor:DZRColors.purple];
+}
+
+- (void)setInformationLabel:(UILabel *)informationLabel
+{
+    _informationLabel = informationLabel;
+    
+    [_informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
+    [_informationLabel setTextColor:DZRColors.white];
+    [_informationLabel setNumberOfLines:2];
+    [_informationLabel setTextAlignment:NSTextAlignmentCenter];
+    [_informationLabel setFont:DZRFonts.smallLight];
+}
+
+#pragma - Lifecycle -
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
     
     self.viewModel = [SearchArtistsViewModel new];
     [self.viewModel setDelegate:self];
+    
+    [self.navigationController.navigationBar setTintColor:DZRColors.white];
+    [self.navigationController.navigationBar setBarTintColor:DZRColors.purple];
+    [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:DZRColors.white, NSForegroundColorAttributeName,nil]];
+    [self.navigationController.navigationBar setTranslucent:YES];
+    
+    [self setTitle:@"Artists"];
 }
 
 #pragma - SearchArtistsViewModelDelegate
 
 - (void)artistsValueChanged:(NSArray *)artists
 {
+    if(artists.count <= 0 && [self.searchBar.text length] > 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.2 animations:^{
+                [self.informationLabel setText:@"Your search returned no results, try another name"];
+                [self.informationLabel setAlpha:1];
+                
+                [self.informationLabel layoutIfNeeded];
+            }];
+        });
+    } else if (artists.count <= 0 && [self.searchBar.text length] <= 0) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.2 animations:^{
+                [self.informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
+                [self.informationLabel setAlpha:1];
+                
+                [self.informationLabel layoutIfNeeded];
+            }];
+        });
+    } else {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [UIView animateWithDuration:0.2 animations:^{
+                [self.informationLabel setAlpha:0];
+                
+                [self.informationLabel layoutIfNeeded];
+            }];
+        });
+    }
+    
     [self.collectionView reloadData];
 }
 

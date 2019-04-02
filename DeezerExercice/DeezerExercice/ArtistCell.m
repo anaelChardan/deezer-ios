@@ -5,15 +5,52 @@
 //
 
 #import "ArtistCell.h"
+#import "DeezerExercice-Swift.h"
 
 @interface ArtistCell ()
 
 @property (weak, nonatomic) IBOutlet UIImageView *artistImage;
 @property (weak, nonatomic) IBOutlet UILabel *artistName;
+@property (weak, nonatomic) IBOutlet UIView *gradientBackgroundView;
 
 @end
 
 @implementation ArtistCell
+
+#pragma - Outlets -
+
+-(void)setArtistName:(UILabel *)artistName
+{
+    _artistName = artistName;
+    
+    [_artistName setTextColor:DZRColors.white];
+    [_artistName setFont:DZRFonts.smallMedium];
+    [_artistName setTextAlignment:NSTextAlignmentCenter];
+}
+
+- (void)setArtistImage:(UIImageView *)artistImage
+{
+    _artistImage = artistImage;
+    
+    [_artistImage setContentMode:UIViewContentModeScaleAspectFill];
+    [_artistImage setClipsToBounds:YES];
+    [_artistImage.layer setCornerRadius:2];
+}
+
+- (void)setGradientBackgroundView:(UIView *)gradientBackgroundView
+{
+    _gradientBackgroundView = gradientBackgroundView;
+    
+    [_gradientBackgroundView setBackgroundColor:UIColor.clearColor];
+    CAGradientLayer *gradient = [CAGradientLayer layer];
+    gradient.frame = _gradientBackgroundView.bounds;
+    
+    gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[DZRColors.purple colorWithAlphaComponent:0.7].CGColor];
+    
+    [_gradientBackgroundView.layer insertSublayer:gradient atIndex:0];
+}
+
+#pragma - Methods -
 
 - (void)display:(NSString *)name withPictureUrl:(NSString *)pictureUrl
 {

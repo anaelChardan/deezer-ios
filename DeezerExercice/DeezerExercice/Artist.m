@@ -13,7 +13,7 @@
     if (self) {
         self.identifier = [[dictionary objectForKey:@"id"] integerValue];
         self.name = [dictionary objectForKey:@"name"];
-        self.pictureUrl = [dictionary objectForKey:@"picture"];
+        self.pictureUrl = [dictionary objectForKey:@"picture_medium"];
     }
     return self;
 }
