@@ -39,7 +39,7 @@
 
 - (void)setGradientBackgroundView:(UIView *)gradientBackgroundView
 {
-    _gradientBackgroundView = gradientBackgroundView;
+    _gradientBackgroundView = gradientBackgroundView;    
     
     [_gradientBackgroundView setBackgroundColor:UIColor.clearColor];
     CAGradientLayer *gradient = [CAGradientLayer layer];

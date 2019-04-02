@@ -13,8 +13,9 @@
 @interface SearchArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate, SearchArtistsViewModelDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
-@property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (weak, nonatomic) IBOutlet UILabel *informationLabel;
+
+@property (nonatomic) UISearchBar *searchBar;
 
 @property (nonatomic) SearchArtistsViewModel *viewModel;
 
@@ -43,17 +44,16 @@
 - (void)setSearchBar:(UISearchBar *)searchBar
 {
     _searchBar = searchBar;
+    [_searchBar setTranslucent:NO];
     [_searchBar setBarTintColor:DZRColors.purple];
     [_searchBar setPlaceholder:@"Enter an artist name"];
-    
-//    let textFieldInsideSearchBar = searchBar.value(forKey: "searchField") as? UITextField
-//
-//    textFieldInsideSearchBar?.textColor = Colors.grey
-//    textFieldInsideSearchBar?.backgroundColor = Colors.lightBlack
+    [_searchBar setDelegate:self];
+    [_searchBar setShowsCancelButton:YES animated:YES];
     
     UITextField *textfield = [_searchBar valueForKey:@"searchField"];
     [textfield setTextColor:DZRColors.white];
     [textfield setBackgroundColor:DZRColors.purple];
+    
 }
 
 - (void)setInformationLabel:(UILabel *)informationLabel
@@ -76,12 +76,22 @@
     self.viewModel = [SearchArtistsViewModel new];
     [self.viewModel setDelegate:self];
     
+    self.searchBar = [UISearchBar new];
+    [self.navigationItem setTitleView:self.searchBar];
+    
     [self.navigationController.navigationBar setTintColor:DZRColors.white];
     [self.navigationController.navigationBar setBarTintColor:DZRColors.purple];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:DZRColors.white, NSForegroundColorAttributeName,nil]];
-    [self.navigationController.navigationBar setTranslucent:YES];
+    [self.navigationController.navigationBar setTranslucent:NO];
     
     [self setTitle:@"Artists"];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
 #pragma - SearchArtistsViewModelDelegate
@@ -137,6 +147,11 @@
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    [searchBar resignFirstResponder];
+}
+
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
 }

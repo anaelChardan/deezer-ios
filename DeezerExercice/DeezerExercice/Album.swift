@@ -15,10 +15,18 @@ struct Album: Codable {
     //MARK : - Properties -
     var identifier: Int
     var title: String
+    var coverSmall: String
+    var coverBig: String
+    var fans: Int
+    var releaseDate: String
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case title
+        case coverSmall = "cover_small"
+        case coverBig = "cover_big"
+        case fans
+        case releaseDate = "release_date"
     }
 }
 

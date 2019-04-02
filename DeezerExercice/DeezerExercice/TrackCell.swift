@@ -18,20 +18,20 @@ final class TrackCell: UITableViewCell {
     @IBOutlet weak var trackPositionLabel: UILabel! {
         didSet {
             trackPositionLabel.textColor = DZRColors.grey.withAlphaComponent(0.7)
-            trackPositionLabel.font = UIFont.systemFont(ofSize: 16, weight: .light)
+            trackPositionLabel.font = DZRFonts.mediumLight
         }
     }
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = DZRColors.white
-            titleLabel.font = UIFont.systemFont(ofSize: 16, weight: .medium)
+            titleLabel.font = DZRFonts.medium
         }
     }
     
     @IBOutlet weak var durationLabel: UILabel! {
         didSet {
             durationLabel.textColor = DZRColors.grey.withAlphaComponent(0.7)
-            durationLabel.font = UIFont.systemFont(ofSize: 16, weight: .light)
+            durationLabel.font = DZRFonts.mediumLight
         }
     }
     
