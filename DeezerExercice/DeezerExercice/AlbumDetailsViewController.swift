@@ -84,7 +84,7 @@ class AlbumDetailsViewController: UIViewController {
             backButton.setImage(UIImage(named: "iconBack"), for: .normal)
         }
     }
-    
+
     //MARK : - Properties -
     @objc var artistId: Int = 0
     
@@ -94,8 +94,10 @@ class AlbumDetailsViewController: UIViewController {
 
             viewModel.album.bind {
                 self.titleLabel.text = $0.title.uppercased()
-                self.fansValueLabel.text = "\($0.fans)"
-                self.releaseDateValueLabel.text = $0.releaseDate
+                self.fansValueLabel.text = String(format: "%d", locale: Locale.current, $0.fans)
+                
+                let releaseDateSplit = $0.releaseDate.split(separator: "-")
+                self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
                 
                 URLSession.shared.dataTask(with: URL(string:$0.coverBig)!, completionHandler: { (data, response, error) in
                     if error != nil { return }
@@ -147,17 +149,25 @@ class AlbumDetailsViewController: UIViewController {
 }
 
 extension AlbumDetailsViewController: UITableViewDataSource {
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return self.viewModel?.tracks.value?.count ?? 1
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel?.tracks.value?.count ?? 0
+        return self.viewModel?.tracks.value?["\(section+1)"]?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "CD \(section+1)"
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(TrackCell.self)", for: indexPath) as? TrackCell,
             let viewModel = self.viewModel,
-            let track = viewModel.tracks.value?[indexPath.row]
+            let track = viewModel.tracks.value?["\(indexPath.section+1)"]?[indexPath.row]
         else { return UITableViewCell() }
-        
+
         cell.selectionStyle = .none
         
         cell.display(trackPosition: "\(track.trackPosition)", title: track.title, duration: "\((track.duration % 3600) / 60)m \((track.duration % 3600) % 60)s")
