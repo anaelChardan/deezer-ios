@@ -15,9 +15,13 @@ struct Track: Codable {
     //MARK : - Properties -
     var identifier: Int
     var title: String
+    var trackPosition: Int
+    var duration: Int
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case title
+        case trackPosition = "track_position"
+        case duration
     }
 }

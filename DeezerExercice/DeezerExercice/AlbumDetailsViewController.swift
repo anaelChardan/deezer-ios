@@ -11,7 +11,14 @@ import UIKit
 class AlbumDetailsViewController: UIViewController {
 
     //MARK : - Outlets -
-    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tableView: UITableView! {
+        didSet {
+            tableView.backgroundColor = DZRColors.purple
+            tableView.separatorStyle = .none
+            tableView.tableFooterView = UIView()
+            tableView.rowHeight = 60
+        }
+    }
     
     //MARK : - Properties -
     @objc var artistId: Int = 0
@@ -60,7 +67,8 @@ extension AlbumDetailsViewController: UITableViewDataSource {
             let track = viewModel.tracks.value?[indexPath.row]
         else { return UITableViewCell() }
         
-        cell.display(title: track.title)
+        cell.selectionStyle = .none
+        cell.display(trackPosition: "\(track.trackPosition)", title: track.title, duration: "\((track.duration % 3600) / 60):\((track.duration % 3600) % 60)")
         
         return cell
     }
