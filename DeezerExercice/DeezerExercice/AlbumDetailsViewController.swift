@@ -54,10 +54,13 @@ extension AlbumDetailsViewController: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = UITableViewCell()
+        guard
+            let cell = tableView.dequeueReusableCell(withIdentifier: "\(TrackCell.self)", for: indexPath) as? TrackCell,
+            let viewModel = self.viewModel,
+            let track = viewModel.tracks.value?[indexPath.row]
+        else { return UITableViewCell() }
         
-        cell.backgroundColor = .red
-        cell.textLabel?.text = "\(indexPath.row)"
+        cell.display(title: track.title)
         
         return cell
     }
