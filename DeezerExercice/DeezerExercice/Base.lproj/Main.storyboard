@@ -133,8 +133,23 @@
                     <view key="view" contentMode="scaleToFill" id="vgQ-dU-7JE">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="IKw-1g-vmm">
+                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="IKw-1g-vmm" firstAttribute="top" secondItem="JuN-a8-smB" secondAttribute="bottom" id="CGF-Ek-hHZ"/>
+                            <constraint firstAttribute="bottom" secondItem="IKw-1g-vmm" secondAttribute="bottom" id="JTS-Sd-Mzf"/>
+                            <constraint firstItem="IKw-1g-vmm" firstAttribute="leading" secondItem="vgQ-dU-7JE" secondAttribute="leading" id="MtZ-9E-bNh"/>
+                            <constraint firstAttribute="trailing" secondItem="IKw-1g-vmm" secondAttribute="trailing" id="jnQ-Dn-8bb"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="tableView" destination="IKw-1g-vmm" id="HEG-G7-ANJ"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="MCp-EN-qFg" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

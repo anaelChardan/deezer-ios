@@ -10,6 +10,9 @@ import UIKit
 
 class AlbumDetailsViewController: UIViewController {
 
+    //MARK : - Outlets -
+    @IBOutlet weak var tableView: UITableView!
+    
     //MARK : - Properties -
     @objc var artistId: Int = 0
     
@@ -23,8 +26,8 @@ class AlbumDetailsViewController: UIViewController {
                 viewModel.loadTracks(withAlbumId: $0.identifier)
             }
             
-            viewModel.tracks.bind {
-                print($0.count)
+            viewModel.tracks.bind { _ in
+                self.tableView.reloadData()
             }
             
             viewModel.error.bind {
@@ -37,8 +40,25 @@ class AlbumDetailsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.dataSource = self
+        
         self.viewModel = AlbumDetailsViewModel()
 
         self.viewModel?.loadAlbum(withArtistId: artistId)
+    }
+}
+
+extension AlbumDetailsViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.viewModel?.tracks.value?.count ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell()
+        
+        cell.backgroundColor = .red
+        cell.textLabel?.text = "\(indexPath.row)"
+        
+        return cell
     }
 }
