@@ -8,7 +8,6 @@
 
 @interface ArtistCell : UICollectionViewCell
 
-@property (weak, nonatomic) IBOutlet UIImageView *artistImage;
-@property (weak, nonatomic) IBOutlet UILabel *artistName;
+- (void)display:(NSString *)name withPictureUrl:(NSString *)pictureUrl;
 
 @end

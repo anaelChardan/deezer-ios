@@ -51,5 +51,4 @@ final class RemoteRepository: Repository {
             DispatchQueue.main.async { completion(.success(tracks)) }
         }.resume()
     }
-    
 }

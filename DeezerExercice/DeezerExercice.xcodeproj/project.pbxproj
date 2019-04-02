@@ -19,6 +19,8 @@
 		5287D00E225341370068B509 /* DZRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00D225341370068B509 /* DZRError.swift */; };
 		5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D012225352490068B509 /* UIViewController+Alert.swift */; };
 		5287D015225358F60068B509 /* TrackCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D014225358F60068B509 /* TrackCell.swift */; };
+		5287D025225372420068B509 /* SearchArtistsViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 5287D024225372420068B509 /* SearchArtistsViewModel.m */; };
+		5287D02722537D540068B509 /* Artist.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D02622537D540068B509 /* Artist.swift */; };
 		5C1A7D851A6558BB00092761 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D841A6558BB00092761 /* main.m */; };
 		5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D871A6558BB00092761 /* AppDelegate.m */; };
 		5C1A7D8E1A6558BB00092761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D8C1A6558BB00092761 /* Main.storyboard */; };
@@ -54,6 +56,9 @@
 		5287D00D225341370068B509 /* DZRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRError.swift; sourceTree = "<group>"; };
 		5287D012225352490068B509 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		5287D014225358F60068B509 /* TrackCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackCell.swift; sourceTree = "<group>"; };
+		5287D023225372420068B509 /* SearchArtistsViewModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SearchArtistsViewModel.h; sourceTree = "<group>"; };
+		5287D024225372420068B509 /* SearchArtistsViewModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SearchArtistsViewModel.m; sourceTree = "<group>"; };
+		5287D02622537D540068B509 /* Artist.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Artist.swift; sourceTree = "<group>"; };
 		5C1A7D7F1A6558BB00092761 /* DeezerExercice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeezerExercice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C1A7D831A6558BB00092761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C1A7D841A6558BB00092761 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -129,6 +134,7 @@
 				5C2E66191A67C07E00607EC5 /* Artist.m */,
 				207BDDBE22528C67006F938C /* Track.swift */,
 				5287D00922533CE40068B509 /* Album.swift */,
+				5287D02622537D540068B509 /* Artist.swift */,
 			);
 			name = Entities;
 			sourceTree = "<group>";
@@ -136,6 +142,8 @@
 		207BDDAC22523C67006F938C /* SearchArtists */ = {
 			isa = PBXGroup;
 			children = (
+				5287D023225372420068B509 /* SearchArtistsViewModel.h */,
+				5287D024225372420068B509 /* SearchArtistsViewModel.m */,
 				5C1A7DA81A65897200092761 /* SearchArtistsViewController.h */,
 				5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */,
 				5C3304251A6E99B500561778 /* ArtistCell.h */,
@@ -356,11 +364,13 @@
 				5287D00C22533D2A0068B509 /* Result.swift in Sources */,
 				5287D00E225341370068B509 /* DZRError.swift in Sources */,
 				5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */,
+				5287D025225372420068B509 /* SearchArtistsViewModel.m in Sources */,
 				5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */,
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				5287D015225358F60068B509 /* TrackCell.swift in Sources */,
 				207BDDC122528E79006F938C /* Dynamic.swift in Sources */,
 				5287D00622533A870068B509 /* Repository.swift in Sources */,
+				5287D02722537D540068B509 /* Artist.swift in Sources */,
 				5C3304271A6E99B500561778 /* ArtistCell.m in Sources */,
 				5C2E661A1A67C07E00607EC5 /* Artist.m in Sources */,
 				207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */,
