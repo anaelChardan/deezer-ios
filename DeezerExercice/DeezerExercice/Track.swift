@@ -6,16 +6,18 @@
 //  Copyright © 2019 Deezer. All rights reserved.
 //
 
-import Foundation
+struct TrackList: Codable {
+    let data: [Track]
+}
 
 struct Track: Codable {
     
     //MARK : - Properties -
-    let title: String
+    var identifier: Int
+    var title: String
     
-    // MARK: - Lifecycle -
-    init(dict: [String: Any]) {
-        self.title = dict["title"] as? String ?? ""
+    enum CodingKeys: String, CodingKey {
+        case identifier = "id"
+        case title
     }
 }
-

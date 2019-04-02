@@ -90,7 +90,6 @@
                                         <connections>
                                             <outlet property="artistImage" destination="kKI-XC-AWa" id="b8i-GL-RMi"/>
                                             <outlet property="artistName" destination="h04-Ub-2zf" id="AYg-Li-nfV"/>
-                                            <segue destination="WPd-oW-F4D" kind="show" id="802-cG-sDs"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -116,11 +115,12 @@
                     <connections>
                         <outlet property="collectionView" destination="G2z-Iq-UIH" id="IIW-82-eMc"/>
                         <outlet property="searchBar" destination="pap-sx-raJ" id="Owf-DU-yQc"/>
+                        <segue destination="WPd-oW-F4D" kind="show" identifier="tappedOnArtistCell" id="hZd-UQ-XkE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oVv-6f-8ZR" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="813" y="161"/>
+            <point key="canvasLocation" x="767" y="161"/>
         </scene>
         <!--Album Details View Controller-->
         <scene sceneID="nCS-TV-m5S">

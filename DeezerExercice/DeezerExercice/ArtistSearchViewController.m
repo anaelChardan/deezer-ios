@@ -7,12 +7,14 @@
 #import "ArtistSearchViewController.h"
 #import "ArtistCollectionViewCell.h"
 #import "Artist.h"
+#import "DeezerExercice-Swift.h"
 
 @interface ArtistSearchViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
 @property (nonatomic) NSMutableArray *artists;
+@property (nonatomic) Artist *artistSelected;
 
 @end
 
@@ -142,6 +144,18 @@
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
     Artist *artist = [self.artists objectAtIndex:indexPath.row];
+    _artistSelected = artist;
+    
+    [self performSegueWithIdentifier:@"tappedOnArtistCell" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    if([segue.identifier isEqualToString:@"tappedOnArtistCell"]) {
+        AlbumDetailsViewController *vc = segue.destinationViewController;
+        
+        [vc setArtistId: self.artistSelected.identifier];
+    }
 }
 
 @end

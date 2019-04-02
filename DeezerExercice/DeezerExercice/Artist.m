@@ -11,7 +11,7 @@
 - (instancetype)initWithDictionary:(NSDictionary *)dictionary {
     self = [super init];
     if (self) {
-        self.identifier = [dictionary objectForKey:@"id"];
+        self.identifier = [[dictionary objectForKey:@"id"] integerValue];
         self.name = [dictionary objectForKey:@"name"];
         self.pictureUrl = [dictionary objectForKey:@"picture"];
     }

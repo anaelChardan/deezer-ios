@@ -11,14 +11,24 @@ import UIKit
 class AlbumDetailsViewController: UIViewController {
 
     //MARK : - Properties -
+    @objc var artistId: Int = 0
+    
     private var viewModel: AlbumDetailsViewModelProtocol? {
         didSet {
             guard let viewModel = self.viewModel else { return }
 
             viewModel.album.bind {
-                self.title = $0?.title
+                self.title = $0.title
                 
-                viewModel.loadTracks()
+                viewModel.loadTracks(withAlbumId: $0.identifier)
+            }
+            
+            viewModel.tracks.bind {
+                print($0.count)
+            }
+            
+            viewModel.error.bind {
+                self.showAlertError(message: $0)
             }
         }
     }
@@ -29,6 +39,6 @@ class AlbumDetailsViewController: UIViewController {
         
         self.viewModel = AlbumDetailsViewModel()
 
-        self.viewModel?.loadAlbum()
+        self.viewModel?.loadAlbum(withArtistId: artistId)
     }
 }

@@ -17,6 +17,7 @@
 		5287D00A22533CE40068B509 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00922533CE40068B509 /* Album.swift */; };
 		5287D00C22533D2A0068B509 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00B22533D2A0068B509 /* Result.swift */; };
 		5287D00E225341370068B509 /* DZRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00D225341370068B509 /* DZRError.swift */; };
+		5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D012225352490068B509 /* UIViewController+Alert.swift */; };
 		5C1A7D851A6558BB00092761 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D841A6558BB00092761 /* main.m */; };
 		5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D871A6558BB00092761 /* AppDelegate.m */; };
 		5C1A7D8E1A6558BB00092761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D8C1A6558BB00092761 /* Main.storyboard */; };
@@ -50,6 +51,7 @@
 		5287D00922533CE40068B509 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		5287D00B22533D2A0068B509 /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5287D00D225341370068B509 /* DZRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRError.swift; sourceTree = "<group>"; };
+		5287D012225352490068B509 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
 		5C1A7D7F1A6558BB00092761 /* DeezerExercice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeezerExercice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C1A7D831A6558BB00092761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C1A7D841A6558BB00092761 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -93,6 +95,7 @@
 				207BDDA922523C47006F938C /* App */,
 				207BDDAB22523C52006F938C /* Entities */,
 				207BDDB02252407B006F938C /* Misc */,
+				5287D0112253522B0068B509 /* Extensions */,
 				207BDDC722529791006F938C /* Dependencies */,
 				207BDDAA22523C4C006F938C /* Scenes */,
 			);
@@ -174,6 +177,14 @@
 				5287D00722533AB30068B509 /* RemoteRepository.swift */,
 			);
 			name = Repositories;
+			sourceTree = "<group>";
+		};
+		5287D0112253522B0068B509 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				5287D012225352490068B509 /* UIViewController+Alert.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 		5C1A7D761A6558BB00092761 = {
@@ -342,6 +353,7 @@
 				5287D00C22533D2A0068B509 /* Result.swift in Sources */,
 				5287D00E225341370068B509 /* DZRError.swift in Sources */,
 				5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */,
+				5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */,
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				207BDDC122528E79006F938C /* Dynamic.swift in Sources */,
 				5287D00622533A870068B509 /* Repository.swift in Sources */,

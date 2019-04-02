@@ -8,7 +8,7 @@
 
 @interface Artist : NSObject
 
-@property (nonatomic) NSString *identifier;
+@property (nonatomic) NSInteger identifier;
 @property (nonatomic) NSString *name;
 @property (nonatomic) NSString *pictureUrl;
 

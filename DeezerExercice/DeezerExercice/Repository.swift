@@ -16,5 +16,6 @@ protocol Repository {
     
     // MARK: - Methods
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList>) -> Void)
-    
+    func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList>) -> Void)
+
 }

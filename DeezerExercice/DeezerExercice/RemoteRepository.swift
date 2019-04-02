@@ -34,4 +34,25 @@ extension RemoteRepository: Repository {
         }.resume()
     }
     
+    func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList>) -> Void) {
+        guard let url = URL(string: "https://api.deezer.com/album/\(id)/tracks") else {
+            completion(.failure(DZRError.invalidURL(url: "https://api.deezer.com/album/\(id)/tracks")))
+            return
+        }
+        
+        URLSession.shared.dataTask(with: url) { (data, response, error) in
+            guard let data = data, error == nil else {
+                DispatchQueue.main.async { completion(.failure(error!)) }
+                return
+            }
+            
+            guard let tracks = try? JSONDecoder().decode(TrackList.self, from: data) else {
+                DispatchQueue.main.async { completion(.failure(DZRError.failedToUnwrap)) }
+                return
+            }
+            
+            DispatchQueue.main.async { completion(.success(tracks)) }
+            }.resume()
+    }
+    
 }
