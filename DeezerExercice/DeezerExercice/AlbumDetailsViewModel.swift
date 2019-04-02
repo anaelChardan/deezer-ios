@@ -11,7 +11,6 @@ protocol AlbumDetailsViewModelProtocol {
     //MARK : - Properties -
     var album: Dynamic<Album> { get }
     var tracks: Dynamic<[Track]> { get }
-    
     var error: Dynamic<String> { get }
     
     //MARK : - Methods -

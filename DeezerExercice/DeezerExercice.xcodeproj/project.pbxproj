@@ -24,10 +24,10 @@
 		5C1A7D8E1A6558BB00092761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D8C1A6558BB00092761 /* Main.storyboard */; };
 		5C1A7D901A6558BB00092761 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D8F1A6558BB00092761 /* Images.xcassets */; };
 		5C1A7D931A6558BB00092761 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D911A6558BB00092761 /* LaunchScreen.xib */; };
-		5C1A7DAA1A65897200092761 /* ArtistSearchViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7DA91A65897200092761 /* ArtistSearchViewController.m */; };
+		5C1A7DAA1A65897200092761 /* SearchArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */; };
 		5C2E661A1A67C07E00607EC5 /* Artist.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E66191A67C07E00607EC5 /* Artist.m */; };
 		5C2E661C1A67C3D500607EC5 /* DZRArtistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E661B1A67C3D500607EC5 /* DZRArtistTest.m */; };
-		5C3304271A6E99B500561778 /* ArtistCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3304261A6E99B500561778 /* ArtistCollectionViewCell.m */; };
+		5C3304271A6E99B500561778 /* ArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3304261A6E99B500561778 /* ArtistCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,13 +64,13 @@
 		5C1A7D921A6558BB00092761 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		5C1A7D981A6558BC00092761 /* DeezerExerciceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeezerExerciceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C1A7D9D1A6558BC00092761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C1A7DA81A65897200092761 /* ArtistSearchViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistSearchViewController.h; sourceTree = "<group>"; };
-		5C1A7DA91A65897200092761 /* ArtistSearchViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistSearchViewController.m; sourceTree = "<group>"; };
+		5C1A7DA81A65897200092761 /* SearchArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistsViewController.h; sourceTree = "<group>"; };
+		5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArtistsViewController.m; sourceTree = "<group>"; };
 		5C2E66181A67C07E00607EC5 /* Artist.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Artist.h; sourceTree = "<group>"; };
 		5C2E66191A67C07E00607EC5 /* Artist.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Artist.m; sourceTree = "<group>"; };
 		5C2E661B1A67C3D500607EC5 /* DZRArtistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZRArtistTest.m; sourceTree = "<group>"; };
-		5C3304251A6E99B500561778 /* ArtistCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistCollectionViewCell.h; sourceTree = "<group>"; };
-		5C3304261A6E99B500561778 /* ArtistCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistCollectionViewCell.m; sourceTree = "<group>"; };
+		5C3304251A6E99B500561778 /* ArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistCell.h; sourceTree = "<group>"; };
+		5C3304261A6E99B500561778 /* ArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,7 +117,7 @@
 			isa = PBXGroup;
 			children = (
 				207BDDC222528EDD006F938C /* AlbumDetails */,
-				207BDDAC22523C67006F938C /* ArtistSearch */,
+				207BDDAC22523C67006F938C /* SearchArtists */,
 			);
 			name = Scenes;
 			sourceTree = "<group>";
@@ -133,15 +133,15 @@
 			name = Entities;
 			sourceTree = "<group>";
 		};
-		207BDDAC22523C67006F938C /* ArtistSearch */ = {
+		207BDDAC22523C67006F938C /* SearchArtists */ = {
 			isa = PBXGroup;
 			children = (
-				5C1A7DA81A65897200092761 /* ArtistSearchViewController.h */,
-				5C1A7DA91A65897200092761 /* ArtistSearchViewController.m */,
-				5C3304251A6E99B500561778 /* ArtistCollectionViewCell.h */,
-				5C3304261A6E99B500561778 /* ArtistCollectionViewCell.m */,
+				5C1A7DA81A65897200092761 /* SearchArtistsViewController.h */,
+				5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */,
+				5C3304251A6E99B500561778 /* ArtistCell.h */,
+				5C3304261A6E99B500561778 /* ArtistCell.m */,
 			);
-			name = ArtistSearch;
+			name = SearchArtists;
 			sourceTree = "<group>";
 		};
 		207BDDB02252407B006F938C /* Misc */ = {
@@ -350,7 +350,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5287D00A22533CE40068B509 /* Album.swift in Sources */,
-				5C1A7DAA1A65897200092761 /* ArtistSearchViewController.m in Sources */,
+				5C1A7DAA1A65897200092761 /* SearchArtistsViewController.m in Sources */,
 				5287D00822533AB30068B509 /* RemoteRepository.swift in Sources */,
 				207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */,
 				5287D00C22533D2A0068B509 /* Result.swift in Sources */,
@@ -361,7 +361,7 @@
 				5287D015225358F60068B509 /* TrackCell.swift in Sources */,
 				207BDDC122528E79006F938C /* Dynamic.swift in Sources */,
 				5287D00622533A870068B509 /* Repository.swift in Sources */,
-				5C3304271A6E99B500561778 /* ArtistCollectionViewCell.m in Sources */,
+				5C3304271A6E99B500561778 /* ArtistCell.m in Sources */,
 				5C2E661A1A67C07E00607EC5 /* Artist.m in Sources */,
 				207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */,
 				207BDDC9225297AF006F938C /* Dependencies.swift in Sources */,

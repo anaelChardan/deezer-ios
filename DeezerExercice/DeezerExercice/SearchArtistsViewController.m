@@ -1,15 +1,15 @@
 //
-//  ArtistSearchViewController.m
+//  SearchArtistsViewController.m
 //  DeezerExercice
 //  Copyright (c) 2015 Deezer. All rights reserved.
 //
 
-#import "ArtistSearchViewController.h"
-#import "ArtistCollectionViewCell.h"
+#import "SearchArtistsViewController.h"
+#import "ArtistCell.h"
 #import "Artist.h"
 #import "DeezerExercice-Swift.h"
 
-@interface ArtistSearchViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
+@interface SearchArtistsViewController () <UICollectionViewDataSource, UICollectionViewDelegate, UISearchBarDelegate>
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UISearchBar *searchBar;
@@ -18,7 +18,7 @@
 
 @end
 
-@implementation ArtistSearchViewController
+@implementation SearchArtistsViewController
 
 - (void)viewDidLoad
 {
@@ -99,7 +99,7 @@
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"ArtistCollectionViewCellIdentifier";
-    ArtistCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
+    ArtistCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:CellIdentifier forIndexPath:indexPath];
     
     Artist *artist = [self.artists objectAtIndex:indexPath.row];
     

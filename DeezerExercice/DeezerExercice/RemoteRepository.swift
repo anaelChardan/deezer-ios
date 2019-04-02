@@ -8,10 +8,7 @@
 
 import Foundation
 
-final class RemoteRepository {
-}
-
-extension RemoteRepository: Repository {
+final class RemoteRepository: Repository {
     
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList>) -> Void) {
         guard let url = URL(string: "https://api.deezer.com/artist/\(id)/albums") else {
@@ -52,7 +49,7 @@ extension RemoteRepository: Repository {
             }
             
             DispatchQueue.main.async { completion(.success(tracks)) }
-            }.resume()
+        }.resume()
     }
     
 }

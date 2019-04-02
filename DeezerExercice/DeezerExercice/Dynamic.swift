@@ -8,10 +8,25 @@
 
 class Dynamic<T> {
     
+    // MARK: - Properties
     typealias Listener = (T) -> Void
     
     var listener: Listener?
     
+    var value: T? {
+        didSet {
+            guard let value = value else { return }
+            
+            listener?(value)
+        }
+    }
+    
+    // MARK: - Lifecycle
+    init(_ v: T?) {
+        value = v
+    }
+    
+    // MARK: - Methods
     func bind(listener: Listener?) {
         self.listener = listener
     }
@@ -21,16 +36,5 @@ class Dynamic<T> {
         guard let value = value else { return }
         
         listener?(value)
-    }
-    
-    var value: T? {
-        didSet {
-            guard let value = value else { return }
-            listener?(value)
-        }
-    }
-    
-    init(_ v: T?) {
-        value = v
     }
 }
