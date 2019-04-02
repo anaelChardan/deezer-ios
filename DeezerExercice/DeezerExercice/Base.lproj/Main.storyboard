@@ -152,7 +152,7 @@
                                             <rect key="frame" x="16" y="16" width="60" height="60"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="60" id="O3r-aa-HZz"/>
-                                                <constraint firstAttribute="width" constant="60" id="foM-TM-xLE"/>
+                                                <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="60" id="foM-TM-xLE"/>
                                             </constraints>
                                             <state key="normal" title="Back"/>
                                             <connections>
@@ -210,11 +210,12 @@
                                             </subviews>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             <constraints>
-                                                <constraint firstAttribute="trailing" secondItem="Ekd-Sz-AIy" secondAttribute="trailing" constant="32" id="885-Z1-1fr"/>
-                                                <constraint firstItem="Ekd-Sz-AIy" firstAttribute="leading" secondItem="6zm-ec-jZj" secondAttribute="leading" constant="32" id="DW2-Ez-hjX"/>
                                                 <constraint firstAttribute="bottom" secondItem="d3x-sh-c5X" secondAttribute="bottom" constant="30" id="fL5-hi-Lb0"/>
+                                                <constraint firstItem="Ekd-Sz-AIy" firstAttribute="centerX" secondItem="6zm-ec-jZj" secondAttribute="centerX" id="g7f-yr-4Cb"/>
                                                 <constraint firstAttribute="height" constant="350" id="hDW-fp-WSv"/>
                                                 <constraint firstItem="d3x-sh-c5X" firstAttribute="top" secondItem="Ekd-Sz-AIy" secondAttribute="bottom" constant="32" id="htM-oa-rnq"/>
+                                                <constraint firstItem="Ekd-Sz-AIy" firstAttribute="leading" relation="lessThanOrEqual" secondItem="6zm-ec-jZj" secondAttribute="leading" constant="32" id="j1h-8Y-xK0"/>
+                                                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="Ekd-Sz-AIy" secondAttribute="trailing" constant="32" id="lnw-ZE-DEy"/>
                                                 <constraint firstItem="d3x-sh-c5X" firstAttribute="centerX" secondItem="6zm-ec-jZj" secondAttribute="centerX" id="oZg-Sc-PTn"/>
                                             </constraints>
                                         </view>
@@ -224,6 +225,7 @@
                                         <constraint firstAttribute="trailing" secondItem="6zm-ec-jZj" secondAttribute="trailing" id="12P-Dc-VcR"/>
                                         <constraint firstItem="Yut-pd-n63" firstAttribute="leading" secondItem="gKo-D3-tlC" secondAttribute="leading" constant="16" id="2Y6-Eh-fRH"/>
                                         <constraint firstAttribute="bottom" secondItem="6zm-ec-jZj" secondAttribute="bottom" id="6KO-ns-T4g"/>
+                                        <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Yut-pd-n63" secondAttribute="trailing" constant="20" symbolic="YES" id="7eo-7O-Lw4"/>
                                         <constraint firstItem="Gar-Fz-NQS" firstAttribute="leading" secondItem="gKo-D3-tlC" secondAttribute="leading" id="O2y-Yd-EwS"/>
                                         <constraint firstAttribute="bottom" secondItem="Gar-Fz-NQS" secondAttribute="bottom" id="S0Y-ZF-cE1"/>
                                         <constraint firstItem="6zm-ec-jZj" firstAttribute="leading" secondItem="gKo-D3-tlC" secondAttribute="leading" id="Sgt-Et-rg1"/>
