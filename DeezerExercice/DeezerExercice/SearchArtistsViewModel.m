@@ -8,6 +8,7 @@
 
 #import "SearchArtistsViewModel.h"
 #import "Artist.h"
+#import "DeezerExercice-Swift.h"
 
 @implementation SearchArtistsViewModel
 
@@ -31,6 +32,7 @@
 
 -(void)searchArtistsWithQuery:(NSString *)query
 {
+    
     NSString *urlRequest = [NSString stringWithFormat:@"http://api.deezer.com/search/artist?q=%@&limit=150", query];
     urlRequest = [urlRequest stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     

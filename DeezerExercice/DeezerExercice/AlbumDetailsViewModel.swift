@@ -43,17 +43,10 @@ class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     var tracks = Dynamic<[String:[Track]]>([:])
     var error = Dynamic<String>("")
     
-    private let dependencies: FullDependencies
-    
-    // MARK: - Lifecycle -
-    init(dependencies: FullDependencies = Dependencies.shared) {
-        self.dependencies = dependencies
-    }
-    
     //MARK : - Methods -
     func loadAlbum(withArtistId id: Int) {
-        self.dependencies
-            .repository
+        NetworkService
+            .shared
             .fetchAlbums(withArtistId: id) { result in
                 switch result {
                 case .success(let albums):
@@ -65,8 +58,8 @@ class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     }
     
     func loadTracks(withAlbumId id: Int) {
-        self.dependencies
-            .repository
+        NetworkService
+            .shared
             .fetchTracks(withAlbumId: id) { result in
                 switch result {
                 case .success(let tracks):

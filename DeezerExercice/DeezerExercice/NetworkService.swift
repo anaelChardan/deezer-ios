@@ -1,15 +1,22 @@
 //
-//  RemoteRepository.swift
+//  NetworkService.swift
 //  DeezerExercice
 //
-//  Created by Maxime Maheo on 02/04/2019.
+//  Created by Maxime Maheo on 03/04/2019.
 //  Copyright © 2019 Deezer. All rights reserved.
 //
 
-import Foundation
+protocol NetworkServiceProtocol: class {
+    func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void)
+    func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList, DZRError>) -> Void)
+}
 
-final class RemoteRepository: Repository {
+class NetworkService: NSObject, NetworkServiceProtocol {
     
+    // MARK: - Properties
+    static let shared: NetworkServiceProtocol = NetworkService()
+    
+    // MARK: - Methods
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void) {
         guard let url = URL(string: "https://api.deezer.com/artist/\(id)/albums") else {
             completion(.failure(DZRError.invalidURL))

@@ -11,9 +11,7 @@
 		207BDDC122528E79006F938C /* Dynamic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC022528E79006F938C /* Dynamic.swift */; };
 		207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC32252906D006F938C /* AlbumDetailsViewModel.swift */; };
 		207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */; };
-		207BDDC9225297AF006F938C /* Dependencies.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC8225297AF006F938C /* Dependencies.swift */; };
-		5287D00622533A870068B509 /* Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00522533A870068B509 /* Repository.swift */; };
-		5287D00822533AB30068B509 /* RemoteRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00722533AB30068B509 /* RemoteRepository.swift */; };
+		5229AEF3225495490018E1CD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229AEF2225495490018E1CD /* NetworkService.swift */; };
 		5287D00A22533CE40068B509 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00922533CE40068B509 /* Album.swift */; };
 		5287D00E225341370068B509 /* DZRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00D225341370068B509 /* DZRError.swift */; };
 		5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D012225352490068B509 /* UIViewController+Alert.swift */; };
@@ -50,9 +48,7 @@
 		207BDDC022528E79006F938C /* Dynamic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dynamic.swift; sourceTree = "<group>"; };
 		207BDDC32252906D006F938C /* AlbumDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewModel.swift; sourceTree = "<group>"; };
 		207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
-		207BDDC8225297AF006F938C /* Dependencies.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dependencies.swift; sourceTree = "<group>"; };
-		5287D00522533A870068B509 /* Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Repository.swift; sourceTree = "<group>"; };
-		5287D00722533AB30068B509 /* RemoteRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteRepository.swift; sourceTree = "<group>"; };
+		5229AEF2225495490018E1CD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5287D00922533CE40068B509 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		5287D00D225341370068B509 /* DZRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRError.swift; sourceTree = "<group>"; };
 		5287D012225352490068B509 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -107,7 +103,7 @@
 				207BDDAB22523C52006F938C /* Entities */,
 				207BDDB02252407B006F938C /* Misc */,
 				5287D0112253522B0068B509 /* Extensions */,
-				207BDDC722529791006F938C /* Dependencies */,
+				207BDDC722529791006F938C /* Services */,
 				207BDDAA22523C4C006F938C /* Scenes */,
 			);
 			name = Source;
@@ -177,22 +173,12 @@
 			name = AlbumDetails;
 			sourceTree = "<group>";
 		};
-		207BDDC722529791006F938C /* Dependencies */ = {
+		207BDDC722529791006F938C /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				5287D00422533A710068B509 /* Repositories */,
-				207BDDC8225297AF006F938C /* Dependencies.swift */,
+				5229AEF2225495490018E1CD /* NetworkService.swift */,
 			);
-			name = Dependencies;
-			sourceTree = "<group>";
-		};
-		5287D00422533A710068B509 /* Repositories */ = {
-			isa = PBXGroup;
-			children = (
-				5287D00522533A870068B509 /* Repository.swift */,
-				5287D00722533AB30068B509 /* RemoteRepository.swift */,
-			);
-			name = Repositories;
+			name = Services;
 			sourceTree = "<group>";
 		};
 		5287D0112253522B0068B509 /* Extensions */ = {
@@ -363,11 +349,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5229AEF3225495490018E1CD /* NetworkService.swift in Sources */,
 				5287D0332253B8250068B509 /* UIView+Gradient.swift in Sources */,
 				5287D00A22533CE40068B509 /* Album.swift in Sources */,
 				5287D02B22538E6E0068B509 /* DZRColors.swift in Sources */,
 				5C1A7DAA1A65897200092761 /* SearchArtistsViewController.m in Sources */,
-				5287D00822533AB30068B509 /* RemoteRepository.swift in Sources */,
 				207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */,
 				5287D00E225341370068B509 /* DZRError.swift in Sources */,
 				5287D02F2253964A0068B509 /* DZRFonts.swift in Sources */,
@@ -377,12 +363,10 @@
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				5287D015225358F60068B509 /* TrackCell.swift in Sources */,
 				207BDDC122528E79006F938C /* Dynamic.swift in Sources */,
-				5287D00622533A870068B509 /* Repository.swift in Sources */,
 				5287D02722537D540068B509 /* Artist.swift in Sources */,
 				5C3304271A6E99B500561778 /* ArtistCell.m in Sources */,
 				5C2E661A1A67C07E00607EC5 /* Artist.m in Sources */,
 				207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */,
-				207BDDC9225297AF006F938C /* Dependencies.swift in Sources */,
 				207BDDBF22528C67006F938C /* Track.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
