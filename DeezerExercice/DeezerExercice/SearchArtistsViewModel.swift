@@ -17,14 +17,14 @@ import Foundation
 
 @objc protocol SearchArtistsViewModelProtocol: class {
     
-    //MARK : - Properties -
+    // MARK: - Properties
     var artists: [Artist] { get }
     var errorMessage: String { get }
     var selectedArtist: Artist? { get }
     
     weak var delegate: SearchArtistsViewModelDelegate? { get set }
 
-    //MARK : - Methods -
+    // MARK: - Methods
     func searchArtists(withQuery query: String)
     func artistCellDidTapped(at indexpath: IndexPath)
 }

@@ -9,7 +9,7 @@ import UIKit
 
 class AlbumDetailsViewController: UIViewController {
 
-    //MARK : - Outlets -
+    // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView! {
         didSet {
             tableView.backgroundColor = DZRColors.purple
@@ -85,7 +85,7 @@ class AlbumDetailsViewController: UIViewController {
         }
     }
 
-    //MARK : - Properties -
+    // MARK: - Properties
     @objc var artistId: Int = 0
     
     private var viewModel: AlbumDetailsViewModelProtocol? {
@@ -121,7 +121,7 @@ class AlbumDetailsViewController: UIViewController {
         }
     }
     
-    //MARK : - Lifecycle -
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -147,6 +147,8 @@ class AlbumDetailsViewController: UIViewController {
     }
     
 }
+
+// MARK: - UITableViewDataSource
 
 extension AlbumDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {

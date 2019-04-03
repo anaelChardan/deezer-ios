@@ -8,6 +8,8 @@
 
 import UIKit
 
+//TODO : extension for objective c
+
 extension UIView {
     func gradient(colors: [CGColor]) {
         let gradientLayer = CAGradientLayer()

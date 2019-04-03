@@ -8,24 +8,26 @@
 
 protocol AlbumDetailsViewModelProtocol {
     
-    //MARK : - Properties -
+    //TODO : remove dynamic and use delegate
+    
+    // MARK: - Properties
     var album: Dynamic<Album> { get }
     var tracks: Dynamic<[String:[Track]]> { get }
     var error: Dynamic<String> { get }
     
-    //MARK : - Methods -
+    // MARK: - Methods
     func loadAlbum(withArtistId id: Int)
     func loadTracks(withAlbumId id: Int)
 }
 
 class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     
-    //MARK : - Properties -
+    // MARK: - Properties
     var album = Dynamic<Album>(nil)
     var tracks = Dynamic<[String:[Track]]>([:])
     var error = Dynamic<String>("")
     
-    //MARK : - Methods -
+    // MARK: - Methods
     func loadAlbum(withArtistId id: Int) {
         NetworkService
             .shared
@@ -46,6 +48,8 @@ class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                 switch result {
                 case .success(let tracks):
                     var newTracks: [String:[Track]] = [:]
+                    
+                    //TODO refactor this
                     
                     tracks.data.forEach {
                         newTracks["\($0.diskNumber)"] = []

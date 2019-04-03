@@ -8,9 +8,11 @@
 import Foundation
 
 protocol NetworkServiceProtocol: class {
+    
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void)
     func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList, DZRError>) -> Void)
     func fetchArtists(withQuery query: String, completion: @escaping (Result<ArtistList, DZRError>) -> Void)
+    
 }
 
 class NetworkService: NSObject, NetworkServiceProtocol {
@@ -24,6 +26,8 @@ class NetworkService: NSObject, NetworkServiceProtocol {
             completion(.failure(DZRError.invalidURL))
             return
         }
+        
+        //TODO : do I need to pass in the ui thread ?
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
