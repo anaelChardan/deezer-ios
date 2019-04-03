@@ -7,7 +7,7 @@
 //
 import UIKit
 
-class AlbumDetailsViewController: UIViewController {
+final class AlbumDetailsViewController: UIViewController {
 
     // MARK: - Outlets
     @IBOutlet weak var tableView: UITableView! {
@@ -88,38 +88,7 @@ class AlbumDetailsViewController: UIViewController {
     // MARK: - Properties
     @objc var artistId: Int = 0
     
-    private var viewModel: AlbumDetailsViewModelProtocol? {
-        didSet {
-            guard let viewModel = self.viewModel else { return }
-
-            viewModel.album.bind {
-                self.titleLabel.text = $0.title.uppercased()
-                self.fansValueLabel.text = String(format: "%d", locale: Locale.current, $0.fans)
-                
-                let releaseDateSplit = $0.releaseDate.split(separator: "-")
-                self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
-                
-                URLSession.shared.dataTask(with: URL(string:$0.coverBig)!, completionHandler: { (data, response, error) in
-                    if error != nil { return }
-                    DispatchQueue.main.async {
-                        if let data = data, let downloadedImage = UIImage(data: data) {
-                            self.coverImageView.image = downloadedImage
-                        }
-                    }
-                }).resume()
-                
-                viewModel.loadTracks(withAlbumId: $0.identifier)
-            }
-            
-            viewModel.tracks.bind { _ in
-                self.tableView.reloadData()
-            }
-            
-            viewModel.error.bind {
-                self.showAlertError(message: $0)
-            }
-        }
-    }
+    private var viewModel: AlbumDetailsViewModelProtocol?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -128,11 +97,11 @@ class AlbumDetailsViewController: UIViewController {
         self.tableView.dataSource = self
         
         self.viewModel = AlbumDetailsViewModel()
-
+        
         self.viewModel?.loadAlbum(withArtistId: artistId)
+        self.viewModel?.delegate = self
         
         self.coverImageViewTopConstraint.constant = -UIApplication.shared.statusBarFrame.height
-
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -148,15 +117,44 @@ class AlbumDetailsViewController: UIViewController {
     
 }
 
-// MARK: - UITableViewDataSource
+// MARK: - AlbumDetailsViewModelDelegate
+extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, albumValueChanged album: Album) {
+        self.titleLabel.text = album.title.uppercased()
+        self.fansValueLabel.text = String(format: "%d", locale: Locale.current, album.fans)
+        
+        let releaseDateSplit = album.releaseDate.split(separator: "-")
+        self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
+        
+        URLSession.shared.dataTask(with: URL(string:album.coverBig)!, completionHandler: { (data, response, error) in
+            if error != nil { return }
+            DispatchQueue.main.async {
+                if let data = data, let downloadedImage = UIImage(data: data) {
+                    self.coverImageView.image = downloadedImage
+                }
+            }
+        }).resume()
+        
+        viewModel?.loadTracks(withAlbumId: album.identifier)
+    }
+    
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String : [Track]]) {
+        self.tableView.reloadData()
+    }
+    
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, errorMessageValueChanged errorMessage: String) {
+        self.showAlertError(message: errorMessage)
+    }
+}
 
+// MARK: - UITableViewDataSource
 extension AlbumDetailsViewController: UITableViewDataSource {
     func numberOfSections(in tableView: UITableView) -> Int {
-        return self.viewModel?.tracks.value?.count ?? 1
+        return self.viewModel?.tracks?.count ?? 1
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.viewModel?.tracks.value?["\(section+1)"]?.count ?? 0
+        return self.viewModel?.tracks?["\(section+1)"]?.count ?? 0
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
@@ -167,7 +165,7 @@ extension AlbumDetailsViewController: UITableViewDataSource {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(TrackCell.self)", for: indexPath) as? TrackCell,
             let viewModel = self.viewModel,
-            let track = viewModel.tracks.value?["\(indexPath.section+1)"]?[indexPath.row]
+            let track = viewModel.tracks?["\(indexPath.section+1)"]?[indexPath.row]
         else { return UITableViewCell() }
 
         cell.selectionStyle = .none

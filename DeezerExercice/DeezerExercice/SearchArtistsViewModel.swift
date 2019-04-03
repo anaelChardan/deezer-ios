@@ -10,37 +10,33 @@ import Foundation
 @objc protocol SearchArtistsViewModelDelegate {
     
     func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, artistsValueChanged artists: [Artist])
-    func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, errorMessageValueChanged errorMessage: String)
     func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, selectedArtistValueChanged selectedArtist: Artist)
-    
+    func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, errorMessageValueChanged errorMessage: String)
+
 }
 
-@objc protocol SearchArtistsViewModelProtocol: class {
+@objc protocol SearchArtistsViewModelProtocol {
     
     // MARK: - Properties
-    var artists: [Artist] { get }
-    var errorMessage: String { get }
+    var artists: [Artist]? { get }
+    var errorMessage: String? { get }
     var selectedArtist: Artist? { get }
     
-    weak var delegate: SearchArtistsViewModelDelegate? { get set }
+    var delegate: SearchArtistsViewModelDelegate? { get set }
 
     // MARK: - Methods
     func searchArtists(withQuery query: String)
     func artistCellDidTapped(at indexpath: IndexPath)
 }
 
-@objcMembers class SearchArtistsViewModel: NSObject, SearchArtistsViewModelProtocol {
+@objcMembers final class SearchArtistsViewModel: NSObject, SearchArtistsViewModelProtocol {
     
     // MARK: - Properties
-    var artists = [Artist]() {
+    var artists: [Artist]? {
         didSet {
-            self.delegate?.searchArtistsViewModel(self, artistsValueChanged: self.artists)
-        }
-    }
-    
-    var errorMessage = "" {
-        didSet {
-            self.delegate?.searchArtistsViewModel(self, errorMessageValueChanged: self.errorMessage)
+            if let artists = self.artists {
+                self.delegate?.searchArtistsViewModel(self, artistsValueChanged: artists)
+            }
         }
     }
     
@@ -52,16 +48,18 @@ import Foundation
         }
     }
     
+    var errorMessage: String? {
+        didSet {
+            if let errorMessage = self.errorMessage {
+                self.delegate?.searchArtistsViewModel(self, errorMessageValueChanged: errorMessage)
+            }
+        }
+    }
+    
     weak var delegate: SearchArtistsViewModelDelegate?
     
     // MARK: - Methods
     func searchArtists(withQuery query: String) {
-        NetworkService
-            .shared
-            .fetchAlbums(withArtistId: 1) { (result) in
-                self.delegate?.searchArtistsViewModel(self, artistsValueChanged: [])
-            }
-        
         NetworkService
             .shared
             .fetchArtists(withQuery: query) { result in
@@ -75,6 +73,6 @@ import Foundation
     }
     
     func artistCellDidTapped(at indexpath: IndexPath) {
-        self.selectedArtist = self.artists[indexpath.row]
+        self.selectedArtist = self.artists?[indexpath.row]
     }
 }

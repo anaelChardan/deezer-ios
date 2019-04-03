@@ -12,7 +12,7 @@ struct TrackList: Codable {
 
 struct Track: Codable {
     
-    //MARK : - Properties -
+    // MARK: - Properties
     var identifier: Int
     var title: String
     var trackPosition: Int

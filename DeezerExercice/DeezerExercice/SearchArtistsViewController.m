@@ -22,7 +22,6 @@
 @implementation SearchArtistsViewController
 
 #pragma - Outlets
-
 - (void)setCollectionView:(UICollectionView *)collectionView
 {
     _collectionView = collectionView;
@@ -65,8 +64,7 @@
     [_informationLabel setFont:DZRFonts.smallLight];
 }
 
-#pragma - Lifecycle -
-
+#pragma - Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -126,18 +124,17 @@
     [self.collectionView reloadData];
 }
 
-- (void)searchArtistsViewModel:(SearchArtistsViewModel *)searchArtistsViewModel errorMessageValueChanged:(NSString *)errorMessage
-{
-    [self showAlertErrorWithMessage:errorMessage];
-}
-
 - (void)searchArtistsViewModel:(SearchArtistsViewModel *)searchArtistsViewModel selectedArtistValueChanged:(Artist *)selectedArtist
 {
     [self performSegueWithIdentifier:@"tappedOnArtistCell" sender:self];
 }
 
-#pragma - UISearchBarDelegate
+- (void)searchArtistsViewModel:(SearchArtistsViewModel *)searchArtistsViewModel errorMessageValueChanged:(NSString *)errorMessage
+{
+    [self showAlertErrorWithMessage:errorMessage];
+}
 
+#pragma - UISearchBarDelegate
 - (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
 {
     [self.viewModel searchArtistsWithQuery:searchText];
@@ -154,7 +151,6 @@
 }
 
 #pragma - UICollectionViewDataSource
-
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
     return self.viewModel.artists.count;
@@ -176,7 +172,6 @@
 }
 
 #pragma - PrepareForSegue
-
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"tappedOnArtistCell"]) {

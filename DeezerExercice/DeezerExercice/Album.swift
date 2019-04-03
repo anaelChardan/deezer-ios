@@ -12,7 +12,7 @@ struct AlbumList: Codable {
 
 struct Album: Codable {
     
-    //MARK : - Properties -
+    // MARK: - Properties
     var identifier: Int
     var title: String
     var coverSmall: String

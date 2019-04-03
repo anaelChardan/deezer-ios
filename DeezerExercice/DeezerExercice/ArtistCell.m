@@ -18,7 +18,6 @@
 @implementation ArtistCell
 
 #pragma - Outlets -
-
 -(void)setArtistName:(UILabel *)artistName
 {
     _artistName = artistName;
@@ -51,7 +50,6 @@
 }
 
 #pragma - Methods -
-
 - (void)display:(NSString *)name withPictureUrl:(NSString *)pictureUrl
 {
     self.artistImage.image = nil;

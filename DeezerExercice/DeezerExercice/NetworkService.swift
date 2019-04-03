@@ -15,7 +15,7 @@ protocol NetworkServiceProtocol: class {
     
 }
 
-class NetworkService: NSObject, NetworkServiceProtocol {
+final class NetworkService: NSObject, NetworkServiceProtocol {
     
     // MARK: - Properties
     static let shared: NetworkServiceProtocol = NetworkService()

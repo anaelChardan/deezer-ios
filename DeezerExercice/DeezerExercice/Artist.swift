@@ -13,7 +13,7 @@ import Foundation
 
 @objcMembers class Artist: NSObject, Codable {
     
-    //MARK : - Properties -
+    // MARK: - Properties
     var identifier: Int
     var name: String
     var pictureUrl: String

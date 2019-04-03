@@ -6,26 +6,56 @@
 //  Copyright © 2019 Deezer. All rights reserved.
 //
 
-protocol AlbumDetailsViewModelProtocol {
+protocol AlbumDetailsViewModelDelegate: class {
     
-    //TODO : remove dynamic and use delegate
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, albumValueChanged album: Album)
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String:[Track]])
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, errorMessageValueChanged errorMessage: String)
+    
+}
+
+protocol AlbumDetailsViewModelProtocol: class {
     
     // MARK: - Properties
-    var album: Dynamic<Album> { get }
-    var tracks: Dynamic<[String:[Track]]> { get }
-    var error: Dynamic<String> { get }
+    var album: Album? { get }
+    var tracks: [String: [Track]]? { get }
+    var errorMessage: String? { get }
+    
+    var delegate: AlbumDetailsViewModelDelegate? { get set }
     
     // MARK: - Methods
     func loadAlbum(withArtistId id: Int)
     func loadTracks(withAlbumId id: Int)
 }
 
-class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
+final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     
     // MARK: - Properties
-    var album = Dynamic<Album>(nil)
-    var tracks = Dynamic<[String:[Track]]>([:])
-    var error = Dynamic<String>("")
+    var album: Album? {
+        didSet {
+            if let album = self.album {
+                self.delegate?.albumDetailsViewModel(self, albumValueChanged: album)
+            }
+        }
+    }
+    
+    var tracks: [String: [Track]]? {
+        didSet {
+            if let tracks = self.tracks {
+                self.delegate?.albumDetailsViewModel(self, tracksValueChanged: tracks)
+            }
+        }
+    }
+    
+    var errorMessage: String? {
+        didSet {
+            if let errorMessage = self.errorMessage {
+                self.delegate?.albumDetailsViewModel(self, errorMessageValueChanged: errorMessage)
+            }
+        }
+    }
+    
+    weak var delegate: AlbumDetailsViewModelDelegate?
     
     // MARK: - Methods
     func loadAlbum(withArtistId id: Int) {
@@ -34,9 +64,9 @@ class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
             .fetchAlbums(withArtistId: id) { result in
                 switch result {
                 case .success(let albums):
-                    self.album.value = albums.data.first
+                    self.album = albums.data.first
                 case .failure(let error):
-                    self.error.value = error.localizedDescription
+                    self.errorMessage = error.localizedDescription
                 }
             }
     }
@@ -58,10 +88,10 @@ class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                     tracks.data.forEach {
                         newTracks["\($0.diskNumber)"]?.append($0)
                     }
-                                        
-                    self.tracks.value = newTracks
+                    
+                    self.tracks = newTracks
                 case .failure(let error):
-                    self.error.value = error.localizedDescription
+                    self.errorMessage = error.localizedDescription
                 }
             }
     }
