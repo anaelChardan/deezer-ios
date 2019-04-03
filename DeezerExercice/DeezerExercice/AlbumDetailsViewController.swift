@@ -30,7 +30,7 @@ final class AlbumDetailsViewController: UIViewController {
     @IBOutlet weak var gradientBackgroundView: UIView! {
         didSet {
             gradientBackgroundView.backgroundColor = .clear
-            gradientBackgroundView.gradient(colors: [UIColor.clear.cgColor, DZRColors.purple.cgColor])
+            gradientBackgroundView.gradient(colors: [UIColor.clear, DZRColors.purple])
         }
     }
     

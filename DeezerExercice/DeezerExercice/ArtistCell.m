@@ -44,12 +44,7 @@
     _gradientBackgroundView = gradientBackgroundView;    
     
     [_gradientBackgroundView setBackgroundColor:UIColor.clearColor];
-    CAGradientLayer *gradient = [CAGradientLayer layer];
-    gradient.frame = _gradientBackgroundView.bounds;
-    
-    gradient.colors = @[(id)[UIColor clearColor].CGColor, (id)[DZRColors.purple colorWithAlphaComponent:0.7].CGColor];
-    
-    [_gradientBackgroundView.layer insertSublayer:gradient atIndex:0];
+    [_gradientBackgroundView gradientWithColors:@[(id)[UIColor clearColor], (id)[DZRColors.purple colorWithAlphaComponent:0.7]]];
 }
 
 #pragma - Methods -
