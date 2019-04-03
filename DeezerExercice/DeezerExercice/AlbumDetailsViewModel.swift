@@ -6,24 +6,6 @@
 //  Copyright © 2019 Deezer. All rights reserved.
 //
 
-//[
-//    [1: DeezerExercice.Track(identifier: 139566407, title: "Lazarus", trackPosition: 1, duration: 384, diskNumber: 1)],
-//    [1: DeezerExercice.Track(identifier: 139566409, title: "No Plan", trackPosition: 2, duration: 220, diskNumber: 1)],
-//    [1: DeezerExercice.Track(identifier: 139566411, title: "Killing a Little Time", trackPosition: 3, duration: 226, diskNumber: 1)],
-//    [1: DeezerExercice.Track(identifier: 139566413, title: "When I Met You", trackPosition: 4, duration: 248, diskNumber: 1)]
-//]
-//
-//[
-//    "1": [
-//        DeezerExercice.Track(identifier: 139566407, title: "Lazarus", trackPosition: 1, duration: 384, diskNumber: 1),
-//        DeezerExercice.Track(identifier: 139566407, title: "Lazarus", trackPosition: 1, duration: 384, diskNumber: 1),
-//    ],
-//    "2": [
-//        DeezerExercice.Track(identifier: 139566407, title: "Lazarus", trackPosition: 1, duration: 384, diskNumber: 1),
-//        DeezerExercice.Track(identifier: 139566407, title: "Lazarus", trackPosition: 1, duration: 384, diskNumber: 1),
-//    ]
-//]
-
 protocol AlbumDetailsViewModelProtocol {
     
     //MARK : - Properties -

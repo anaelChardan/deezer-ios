@@ -5,12 +5,13 @@
 //  Created by Maxime Maheo on 02/04/2019.
 //  Copyright © 2019 Deezer. All rights reserved.
 //
+import Foundation
 
-struct ArtistList: Codable {
+@objcMembers class ArtistList: NSObject, Codable {
     let data: [Artist]
 }
 
-struct Artist: Codable {
+@objcMembers class Artist: NSObject, Codable {
     
     //MARK : - Properties -
     var identifier: Int
@@ -20,7 +21,7 @@ struct Artist: Codable {
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case name
-        case pictureUrl = "picture"
+        case pictureUrl = "picture_medium"
     }
 }
 
