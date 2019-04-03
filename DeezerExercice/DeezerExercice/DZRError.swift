@@ -8,5 +8,6 @@
 
 public enum DZRError: Error {
     case invalidURL
+    case cannotLoadImageFromUrl
     case error(_ error: Error)
 }

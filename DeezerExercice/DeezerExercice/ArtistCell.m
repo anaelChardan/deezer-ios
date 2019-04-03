@@ -9,8 +9,8 @@
 
 @interface ArtistCell ()
 
-@property (weak, nonatomic) IBOutlet UIImageView *artistImage;
-@property (weak, nonatomic) IBOutlet UILabel *artistName;
+@property (weak, nonatomic) IBOutlet DZRImageView *artistDZRImageView;
+@property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
 @property (weak, nonatomic) IBOutlet UIView *gradientBackgroundView;
 
 @end
@@ -18,22 +18,25 @@
 @implementation ArtistCell
 
 #pragma - Outlets -
--(void)setArtistName:(UILabel *)artistName
+
+- (void)setArtistDZRImageView:(DZRImageView *)artistDZRImageView
 {
-    _artistName = artistName;
+    _artistDZRImageView = artistDZRImageView;
     
-    [_artistName setTextColor:DZRColors.white];
-    [_artistName setFont:DZRFonts.smallMedium];
-    [_artistName setTextAlignment:NSTextAlignmentCenter];
+    [_artistDZRImageView setContentMode:UIViewContentModeScaleAspectFill];
+    [_artistDZRImageView setClipsToBounds:YES];
+    [_artistDZRImageView.layer setCornerRadius:2];
+    [_artistDZRImageView setAlpha:0];
 }
 
-- (void)setArtistImage:(UIImageView *)artistImage
+- (void)setArtistNameLabel:(UILabel *)artistNameLabel
 {
-    _artistImage = artistImage;
+    _artistNameLabel = artistNameLabel;
     
-    [_artistImage setContentMode:UIViewContentModeScaleAspectFill];
-    [_artistImage setClipsToBounds:YES];
-    [_artistImage.layer setCornerRadius:2];
+    [_artistNameLabel setTextColor:DZRColors.white];
+    [_artistNameLabel setFont:DZRFonts.smallMedium];
+    [_artistNameLabel setTextAlignment:NSTextAlignmentCenter];
+    [_artistNameLabel setAlpha:0];
 }
 
 - (void)setGradientBackgroundView:(UIView *)gradientBackgroundView
@@ -52,40 +55,25 @@
 #pragma - Methods -
 - (void)display:(NSString *)name withPictureUrl:(NSString *)pictureUrl
 {
-    self.artistImage.image = nil;
-    self.artistImage.alpha = 0;
+    [self.artistNameLabel setText:name];
     
-    self.artistName.alpha = 0;
-    
-    dispatch_async(dispatch_get_global_queue(0,0), ^{
-        NSData * data = [[NSData alloc] initWithContentsOfURL: [NSURL URLWithString: pictureUrl]];
-        if (data == nil) {
-            [UIView animateWithDuration:0.2 animations:^{
-                self.artistImage.alpha = 1;
-                
-                [self layoutIfNeeded];
-            }];
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.artistNameLabel setAlpha:1];
             
-            return;
-        }
+            [self layoutIfNeeded];
+        }];
+    });
+        
+    [self.artistDZRImageView loadAsyncWithStringUrl:pictureUrl completionSuccess:^{
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.2 animations:^{
-                self.artistImage.image = [UIImage imageWithData: data];
-                self.artistImage.alpha = 1;
+                [self->_artistDZRImageView setAlpha:1];
                 
                 [self layoutIfNeeded];
             }];
-            
         });
-    });
-    
-    [UIView animateWithDuration:0.2 animations:^{
-        self.artistName.text = name;
-        self.artistName.alpha = 1;
-        
-        [self layoutIfNeeded];
     }];
-
 }
 
 @end

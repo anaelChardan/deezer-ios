@@ -19,10 +19,11 @@ final class AlbumDetailsViewController: UIViewController {
         }
     }
     
-    @IBOutlet weak var coverImageView: UIImageView! {
+    @IBOutlet weak var coverDZRImageView: DZRImageView! {
         didSet {
-            coverImageView.contentMode = .scaleAspectFill
-            coverImageView.clipsToBounds = true
+            coverDZRImageView.contentMode = .scaleAspectFill
+            coverDZRImageView.clipsToBounds = true
+            coverDZRImageView.alpha = 0
         }
     }
     
@@ -40,6 +41,7 @@ final class AlbumDetailsViewController: UIViewController {
             titleLabel.numberOfLines = 2
             titleLabel.textColor = DZRColors.white
             titleLabel.textAlignment = .center
+            titleLabel.alpha = 0
         }
     }
     
@@ -48,6 +50,7 @@ final class AlbumDetailsViewController: UIViewController {
             fansValueLabel.text = ""
             fansValueLabel.textColor = DZRColors.pink
             fansValueLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            fansValueLabel.alpha = 0
         }
     }
     
@@ -56,6 +59,7 @@ final class AlbumDetailsViewController: UIViewController {
             fansLabel.text = "Fans"
             fansLabel.textColor = DZRColors.grey.withAlphaComponent(0.5)
             fansLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            fansLabel.alpha = 0
         }
     }
     
@@ -64,6 +68,7 @@ final class AlbumDetailsViewController: UIViewController {
             releaseDateValueLabel.text = ""
             releaseDateValueLabel.textColor = DZRColors.pink
             releaseDateValueLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            releaseDateValueLabel.alpha = 0
         }
     }
     
@@ -72,6 +77,7 @@ final class AlbumDetailsViewController: UIViewController {
             releaseDateLabel.text = "Release date"
             releaseDateLabel.textColor = DZRColors.grey.withAlphaComponent(0.5)
             releaseDateLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            releaseDateLabel.alpha = 0
         }
     }
     
@@ -126,16 +132,24 @@ extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
         let releaseDateSplit = album.releaseDate.split(separator: "-")
         self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
         
-        URLSession.shared.dataTask(with: URL(string:album.coverBig)!, completionHandler: { (data, response, error) in
-            if error != nil { return }
-            DispatchQueue.main.async {
-                if let data = data, let downloadedImage = UIImage(data: data) {
-                    self.coverImageView.image = downloadedImage
-                }
-            }
-        }).resume()
-        
+        self.coverDZRImageView.loadAsync(withStringUrl: album.coverBig) {
+            UIView.animate(withDuration: 0.2, animations: {
+                self.coverDZRImageView.alpha = 1
+                
+                self.view.layoutIfNeeded()
+            })
+        }
         viewModel?.loadTracks(withAlbumId: album.identifier)
+        
+        UIView.animate(withDuration: 0.2, animations: {
+            self.titleLabel.alpha = 1
+            self.fansValueLabel.alpha = 1
+            self.fansLabel.alpha = 1
+            self.releaseDateValueLabel.alpha = 1
+            self.releaseDateLabel.alpha = 1
+            
+            self.view.layoutIfNeeded()
+        })
     }
     
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String : [Track]]) {

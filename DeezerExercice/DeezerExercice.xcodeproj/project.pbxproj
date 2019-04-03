@@ -20,6 +20,7 @@
 		5287D02B22538E6E0068B509 /* DZRColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D02A22538E6E0068B509 /* DZRColors.swift */; };
 		5287D02F2253964A0068B509 /* DZRFonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D02E2253964A0068B509 /* DZRFonts.swift */; };
 		5287D0332253B8250068B509 /* UIView+Gradient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D0322253B8250068B509 /* UIView+Gradient.swift */; };
+		52EE47A12254D31000D8409B /* DZRImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE47A02254D31000D8409B /* DZRImageView.swift */; };
 		5C1A7D851A6558BB00092761 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D841A6558BB00092761 /* main.m */; };
 		5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7D871A6558BB00092761 /* AppDelegate.m */; };
 		5C1A7D8E1A6558BB00092761 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D8C1A6558BB00092761 /* Main.storyboard */; };
@@ -55,6 +56,7 @@
 		5287D02A22538E6E0068B509 /* DZRColors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRColors.swift; sourceTree = "<group>"; };
 		5287D02E2253964A0068B509 /* DZRFonts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRFonts.swift; sourceTree = "<group>"; };
 		5287D0322253B8250068B509 /* UIView+Gradient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Gradient.swift"; sourceTree = "<group>"; };
+		52EE47A02254D31000D8409B /* DZRImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRImageView.swift; sourceTree = "<group>"; };
 		5C1A7D7F1A6558BB00092761 /* DeezerExercice.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeezerExercice.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5C1A7D831A6558BB00092761 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5C1A7D841A6558BB00092761 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -97,6 +99,7 @@
 				207BDDAB22523C52006F938C /* Entities */,
 				207BDDB02252407B006F938C /* Misc */,
 				5287D0112253522B0068B509 /* Extensions */,
+				52EE479F2254D2E900D8409B /* DZRComponents */,
 				207BDDC722529791006F938C /* Services */,
 				207BDDAA22523C4C006F938C /* Scenes */,
 			);
@@ -178,6 +181,14 @@
 				5287D0322253B8250068B509 /* UIView+Gradient.swift */,
 			);
 			name = Extensions;
+			sourceTree = "<group>";
+		};
+		52EE479F2254D2E900D8409B /* DZRComponents */ = {
+			isa = PBXGroup;
+			children = (
+				52EE47A02254D31000D8409B /* DZRImageView.swift */,
+			);
+			name = DZRComponents;
 			sourceTree = "<group>";
 		};
 		5C1A7D761A6558BB00092761 = {
@@ -350,6 +361,7 @@
 				5287D02F2253964A0068B509 /* DZRFonts.swift in Sources */,
 				5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */,
 				5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */,
+				52EE47A12254D31000D8409B /* DZRImageView.swift in Sources */,
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				5287D015225358F60068B509 /* TrackCell.swift in Sources */,
 				5287D02722537D540068B509 /* Artist.swift in Sources */,

@@ -19,12 +19,14 @@ final class TrackCell: UITableViewCell {
         didSet {
             trackPositionLabel.textColor = DZRColors.grey.withAlphaComponent(0.7)
             trackPositionLabel.font = DZRFonts.mediumLight
+            trackPositionLabel.alpha = 0
         }
     }
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.textColor = DZRColors.white
             titleLabel.font = DZRFonts.medium
+            titleLabel.alpha = 0
         }
     }
     
@@ -32,6 +34,7 @@ final class TrackCell: UITableViewCell {
         didSet {
             durationLabel.textColor = DZRColors.grey.withAlphaComponent(0.7)
             durationLabel.font = DZRFonts.mediumLight
+            durationLabel.alpha = 0
         }
     }
     
@@ -48,5 +51,14 @@ extension TrackCell: TrackCellProtocol {
         self.trackPositionLabel.text = trackPosition
         self.titleLabel.text = title
         self.durationLabel.text = duration
+        
+        UIView.animate(withDuration: 0.2) {
+            self.trackPositionLabel.alpha = 1
+            self.titleLabel.alpha = 1
+            self.durationLabel.alpha = 1
+            
+            self.layoutIfNeeded()
+        }
+        
     }
 }
