@@ -30,7 +30,6 @@ protocol AlbumDetailsViewModelProtocol: class {
     func loadAlbum(withArtistId id: Int)
     func loadTracks(withAlbumId id: Int)
     func trackCellDidTapped(at indexPath: IndexPath)
-
 }
 
 final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
@@ -125,6 +124,5 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                 .play(withStringUrl: playingTrack.previewUrl)
             self.playingTrack = playingTrack
         }
-        
     }
 }

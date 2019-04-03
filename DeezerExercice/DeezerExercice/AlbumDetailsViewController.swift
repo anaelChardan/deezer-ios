@@ -17,6 +17,7 @@ final class AlbumDetailsViewController: UIViewController {
             tableView.separatorStyle = .none
             tableView.tableFooterView = UIView()
             tableView.rowHeight = 60
+            tableView.tableHeaderView?.backgroundColor = DZRColors.purple
         }
     }
     
@@ -38,7 +39,7 @@ final class AlbumDetailsViewController: UIViewController {
     @IBOutlet weak var titleLabel: UILabel! {
         didSet {
             titleLabel.text = ""
-            titleLabel.font = UIFont.systemFont(ofSize: 24, weight: .heavy)
+            titleLabel.font = DZRFonts.largeHeavy
             titleLabel.numberOfLines = 2
             titleLabel.textColor = DZRColors.white
             titleLabel.textAlignment = .center
@@ -50,7 +51,7 @@ final class AlbumDetailsViewController: UIViewController {
         didSet {
             fansValueLabel.text = ""
             fansValueLabel.textColor = DZRColors.pink
-            fansValueLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            fansValueLabel.font = DZRFonts.medium
             fansValueLabel.alpha = 0
         }
     }
@@ -59,7 +60,7 @@ final class AlbumDetailsViewController: UIViewController {
         didSet {
             fansLabel.text = "Fans"
             fansLabel.textColor = DZRColors.grey.withAlphaComponent(0.5)
-            fansLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            fansLabel.font = DZRFonts.smallRegular
             fansLabel.alpha = 0
         }
     }
@@ -68,7 +69,7 @@ final class AlbumDetailsViewController: UIViewController {
         didSet {
             releaseDateValueLabel.text = ""
             releaseDateValueLabel.textColor = DZRColors.pink
-            releaseDateValueLabel.font = UIFont.systemFont(ofSize: 18, weight: .medium)
+            releaseDateValueLabel.font = DZRFonts.medium
             releaseDateValueLabel.alpha = 0
         }
     }
@@ -77,7 +78,7 @@ final class AlbumDetailsViewController: UIViewController {
         didSet {
             releaseDateLabel.text = "Release date"
             releaseDateLabel.textColor = DZRColors.grey.withAlphaComponent(0.5)
-            releaseDateLabel.font = UIFont.systemFont(ofSize: 15, weight: .regular)
+            releaseDateLabel.font = DZRFonts.smallRegular
             releaseDateLabel.alpha = 0
         }
     }
@@ -88,10 +89,10 @@ final class AlbumDetailsViewController: UIViewController {
         didSet {
             backButton.setTitle("", for: .normal)
             backButton.tintColor = DZRColors.white
-            backButton.setImage(UIImage(named: "iconBack"), for: .normal)
+            backButton.setImage(DZRAssets.Icons.back, for: .normal)
         }
     }
-
+    
     // MARK: - Properties
     @objc var artistId: Int = 0
     
@@ -119,10 +120,9 @@ final class AlbumDetailsViewController: UIViewController {
     }
     
     // MARK: - Actions
-    @IBAction func backButtonDidTapped(_ sender: UIButton) {
+    @IBAction func backButtonDidTap(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
-    
 }
 
 // MARK: - AlbumDetailsViewModelDelegate
@@ -142,7 +142,6 @@ extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
                 self?.view.layoutIfNeeded()
             })
         }
-        
         
         UIView.animate(withDuration: 0.2, animations: {
             self.titleLabel.alpha = 1

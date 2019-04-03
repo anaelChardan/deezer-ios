@@ -98,8 +98,11 @@
                                     <outlet property="delegate" destination="t1i-yi-ig2" id="mL9-sW-euF"/>
                                 </connections>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsl-e4-TrU">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsl-e4-TrU">
                                 <rect key="frame" x="143" y="438" width="128" height="20.5"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="zR1-9P-aJM"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -156,7 +159,7 @@
                                             </constraints>
                                             <state key="normal" title="Back"/>
                                             <connections>
-                                                <action selector="backButtonDidTapped:" destination="WPd-oW-F4D" eventType="touchUpInside" id="plS-9y-H8g"/>
+                                                <action selector="backButtonDidTap:" destination="WPd-oW-F4D" eventType="touchUpInside" id="bWh-JA-ONT"/>
                                             </connections>
                                         </button>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="6zm-ec-jZj">
@@ -224,13 +227,13 @@
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="6zm-ec-jZj" secondAttribute="trailing" id="12P-Dc-VcR"/>
                                         <constraint firstItem="Yut-pd-n63" firstAttribute="leading" secondItem="gKo-D3-tlC" secondAttribute="leading" constant="16" id="2Y6-Eh-fRH"/>
-                                        <constraint firstAttribute="bottom" secondItem="6zm-ec-jZj" secondAttribute="bottom" id="6KO-ns-T4g"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="Yut-pd-n63" secondAttribute="trailing" constant="20" symbolic="YES" id="7eo-7O-Lw4"/>
                                         <constraint firstItem="Gar-Fz-NQS" firstAttribute="leading" secondItem="gKo-D3-tlC" secondAttribute="leading" id="O2y-Yd-EwS"/>
-                                        <constraint firstAttribute="bottom" secondItem="Gar-Fz-NQS" secondAttribute="bottom" id="S0Y-ZF-cE1"/>
                                         <constraint firstItem="6zm-ec-jZj" firstAttribute="leading" secondItem="gKo-D3-tlC" secondAttribute="leading" id="Sgt-Et-rg1"/>
                                         <constraint firstItem="Yut-pd-n63" firstAttribute="top" secondItem="gKo-D3-tlC" secondAttribute="top" constant="16" id="gkO-zQ-WXO"/>
+                                        <constraint firstItem="6zm-ec-jZj" firstAttribute="bottom" secondItem="Gar-Fz-NQS" secondAttribute="bottom" id="jWv-lC-nfB"/>
                                         <constraint firstAttribute="trailing" secondItem="Gar-Fz-NQS" secondAttribute="trailing" id="jXA-2f-wHQ"/>
+                                        <constraint firstAttribute="bottom" secondItem="Gar-Fz-NQS" secondAttribute="bottom" id="nA2-ie-04d"/>
                                         <constraint firstItem="Gar-Fz-NQS" firstAttribute="top" secondItem="gKo-D3-tlC" secondAttribute="top" id="ra9-Kg-LLN"/>
                                     </constraints>
                                 </view>

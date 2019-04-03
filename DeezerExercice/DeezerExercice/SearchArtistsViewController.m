@@ -61,7 +61,7 @@
     [_informationLabel setTextColor:DZRColors.white];
     [_informationLabel setNumberOfLines:2];
     [_informationLabel setTextAlignment:NSTextAlignmentCenter];
-    [_informationLabel setFont:DZRFonts.smallLight];
+    [_informationLabel setFont:DZRFonts.medium];
 }
 
 #pragma - Lifecycle

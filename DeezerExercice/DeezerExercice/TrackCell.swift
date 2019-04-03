@@ -18,7 +18,7 @@ final class TrackCell: UITableViewCell {
     @IBOutlet weak var trackPositionLabel: UILabel! {
         didSet {
             trackPositionLabel.textColor = DZRColors.grey.withAlphaComponent(0.7)
-            trackPositionLabel.font = DZRFonts.mediumLight
+            trackPositionLabel.font = DZRFonts.normalLight
             trackPositionLabel.alpha = 0
         }
     }
@@ -33,7 +33,7 @@ final class TrackCell: UITableViewCell {
     @IBOutlet weak var durationLabel: UILabel! {
         didSet {
             durationLabel.textColor = DZRColors.grey.withAlphaComponent(0.7)
-            durationLabel.font = DZRFonts.mediumLight
+            durationLabel.font = DZRFonts.normalLight
             durationLabel.alpha = 0
         }
     }

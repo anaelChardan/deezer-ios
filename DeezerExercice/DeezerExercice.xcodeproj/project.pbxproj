@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		206BA4DB225534FE002D6B8E /* DZRAssets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 206BA4DA225534FE002D6B8E /* DZRAssets.swift */; };
 		207BDDBF22528C67006F938C /* Track.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDBE22528C67006F938C /* Track.swift */; };
 		207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC32252906D006F938C /* AlbumDetailsViewModel.swift */; };
 		207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */; };
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		206BA4DA225534FE002D6B8E /* DZRAssets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRAssets.swift; sourceTree = "<group>"; };
 		207BDDB12252408B006F938C /* DeezerExercice-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "DeezerExercice-Bridging-Header.h"; sourceTree = "<group>"; };
 		207BDDBE22528C67006F938C /* Track.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Track.swift; sourceTree = "<group>"; };
 		207BDDC32252906D006F938C /* AlbumDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewModel.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 		207BDDB02252407B006F938C /* Misc */ = {
 			isa = PBXGroup;
 			children = (
+				206BA4DA225534FE002D6B8E /* DZRAssets.swift */,
 				5287D00D225341370068B509 /* DZRError.swift */,
 				5287D02A22538E6E0068B509 /* DZRColors.swift */,
 				5287D02E2253964A0068B509 /* DZRFonts.swift */,
@@ -366,6 +369,7 @@
 				5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */,
 				5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */,
 				52EE47A12254D31000D8409B /* DZRImageView.swift in Sources */,
+				206BA4DB225534FE002D6B8E /* DZRAssets.swift in Sources */,
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				5287D015225358F60068B509 /* TrackCell.swift in Sources */,
 				5287D02722537D540068B509 /* Artist.swift in Sources */,

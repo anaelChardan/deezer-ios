@@ -34,7 +34,7 @@
     _artistNameLabel = artistNameLabel;
     
     [_artistNameLabel setTextColor:DZRColors.white];
-    [_artistNameLabel setFont:DZRFonts.smallMedium];
+    [_artistNameLabel setFont:DZRFonts.medium];
     [_artistNameLabel setTextAlignment:NSTextAlignmentCenter];
     [_artistNameLabel setAlpha:0];
 }
