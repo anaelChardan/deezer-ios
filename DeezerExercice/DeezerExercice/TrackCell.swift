@@ -9,7 +9,7 @@
 import UIKit
 
 protocol TrackCellProtocol {
-    func display(trackPosition: String, title: String, duration: String)
+    func display(trackPosition: String, title: String, duration: String, isHighlight: Bool)
 }
 
 final class TrackCell: UITableViewCell {
@@ -43,14 +43,17 @@ final class TrackCell: UITableViewCell {
         super.init(coder: aDecoder)
         
         backgroundColor = DZRColors.purple
+        selectionStyle = .none
     }
 }
 
 extension TrackCell: TrackCellProtocol {
-    func display(trackPosition: String, title: String, duration: String) {
+    func display(trackPosition: String, title: String, duration: String, isHighlight: Bool) {
         self.trackPositionLabel.text = trackPosition
         self.titleLabel.text = title
         self.durationLabel.text = duration
+
+        self.titleLabel.textColor = isHighlight ? DZRColors.pink : DZRColors.white
         
         UIView.animate(withDuration: 0.2) {
             self.trackPositionLabel.alpha = 1
@@ -59,6 +62,5 @@ extension TrackCell: TrackCellProtocol {
             
             self.layoutIfNeeded()
         }
-        
     }
 }

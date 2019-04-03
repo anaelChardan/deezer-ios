@@ -6,6 +6,7 @@
 //  Copyright © 2019 Deezer. All rights reserved.
 //
 import UIKit
+import AVFoundation
 
 final class AlbumDetailsViewController: UIViewController {
 
@@ -101,6 +102,7 @@ final class AlbumDetailsViewController: UIViewController {
         super.viewDidLoad()
         
         self.tableView.dataSource = self
+        self.tableView.delegate = self
         
         self.viewModel = AlbumDetailsViewModel()
         
@@ -157,6 +159,10 @@ extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
         self.tableView.reloadData()
     }
     
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, playingValueChanged track: Track?) {
+        self.tableView.reloadData()
+    }
+    
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, errorMessageValueChanged errorMessage: String) {
         self.showAlertError(message: errorMessage)
     }
@@ -180,13 +186,25 @@ extension AlbumDetailsViewController: UITableViewDataSource {
         guard
             let cell = tableView.dequeueReusableCell(withIdentifier: "\(TrackCell.self)", for: indexPath) as? TrackCell,
             let viewModel = self.viewModel,
-            let track = viewModel.tracks?["\(indexPath.section+1)"]?[indexPath.row]
+            let selectedTrack = viewModel.tracks?["\(indexPath.section+1)"]?[indexPath.row]
         else { return UITableViewCell() }
 
-        cell.selectionStyle = .none
+        let playingTrack = self.viewModel?.playingTrack
         
-        cell.display(trackPosition: "\(track.trackPosition)", title: track.title, duration: "\((track.duration % 3600) / 60)m \((track.duration % 3600) % 60)s")
+        cell.display(
+            trackPosition: "\(selectedTrack.trackPosition)",
+            title: selectedTrack.title,
+            duration: "\((selectedTrack.duration % 3600) / 60)m \((selectedTrack.duration % 3600) % 60)s",
+            isHighlight: selectedTrack.identifier == playingTrack?.identifier
+        )
         
         return cell
+    }
+}
+
+// MARK: - UITableViewDelegate
+extension AlbumDetailsViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.viewModel?.trackCellDidTapped(at: indexPath)
     }
 }
