@@ -10,45 +10,45 @@ import Foundation
 
 final class RemoteRepository: Repository {
     
-    func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList>) -> Void) {
+    func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void) {
         guard let url = URL(string: "https://api.deezer.com/artist/\(id)/albums") else {
-            completion(.failure(DZRError.invalidURL(url: "https://api.deezer.com/artist/\(id)/albums")))
+            completion(.failure(DZRError.invalidURL))
             return
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
-                DispatchQueue.main.async { completion(.failure(error!)) }
+                DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
                 return
             }
             
-            guard let albums = try? JSONDecoder().decode(AlbumList.self, from: data) else {
-                DispatchQueue.main.async { completion(.failure(DZRError.failedToUnwrap)) }
-                return
+            do {
+                let albums = try JSONDecoder().decode(AlbumList.self, from: data)
+                DispatchQueue.main.async { completion(.success(albums)) }
+            } catch let error {
+                DispatchQueue.main.async { completion(.failure(DZRError.error(error))) }
             }
-            
-            DispatchQueue.main.async { completion(.success(albums)) }
         }.resume()
     }
     
-    func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList>) -> Void) {
+    func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList, DZRError>) -> Void) {
         guard let url = URL(string: "https://api.deezer.com/album/\(id)/tracks") else {
-            completion(.failure(DZRError.invalidURL(url: "https://api.deezer.com/album/\(id)/tracks")))
+            completion(.failure(DZRError.invalidURL))
             return
         }
         
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
-                DispatchQueue.main.async { completion(.failure(error!)) }
+                DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
                 return
             }
             
-            guard let tracks = try? JSONDecoder().decode(TrackList.self, from: data) else {
-                DispatchQueue.main.async { completion(.failure(DZRError.failedToUnwrap)) }
-                return
+            do {
+                let tracks = try JSONDecoder().decode(TrackList.self, from: data)
+                DispatchQueue.main.async { completion(.success(tracks)) }
+            } catch let error {
+                DispatchQueue.main.async { completion(.failure(DZRError.error(error))) }
             }
-            
-            DispatchQueue.main.async { completion(.success(tracks)) }
         }.resume()
     }
 }

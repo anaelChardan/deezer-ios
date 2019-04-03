@@ -7,6 +7,6 @@
 //
 
 public enum DZRError: Error {
-    case invalidURL(url: String)
-    case failedToUnwrap
+    case invalidURL
+    case error(_ error: Error)
 }
