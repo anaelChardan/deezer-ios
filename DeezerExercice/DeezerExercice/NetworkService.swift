@@ -26,9 +26,7 @@ final class NetworkService: NSObject, NetworkServiceProtocol {
             completion(.failure(DZRError.invalidURL))
             return
         }
-        
-        //TODO : do I need to pass in the ui thread ?
-        
+                
         URLSession.shared.dataTask(with: url) { (data, response, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
@@ -66,7 +64,10 @@ final class NetworkService: NSObject, NetworkServiceProtocol {
     }
     
     func fetchArtists(withQuery query: String, completion: @escaping (Result<ArtistList, DZRError>) -> Void) {
-        guard let url = URL(string: "http://api.deezer.com/search/artist?q=\(query)&limit=150") else {
+        guard
+            let stringUrl = "http://api.deezer.com/search/artist?q=\(query)&limit=150".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
+            let url = URL(string: stringUrl)
+        else {
             completion(.failure(DZRError.invalidURL))
             return
         }

@@ -60,16 +60,20 @@ import Foundation
     
     // MARK: - Methods
     func searchArtists(withQuery query: String) {
-        NetworkService
-            .shared
-            .fetchArtists(withQuery: query) { result in
-                switch result {
-                case .success(let artists):
-                    self.artists = artists.data
-                case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+        if query.isEmpty {
+            self.artists = []
+        } else {
+            NetworkService
+                .shared
+                .fetchArtists(withQuery: query) { result in
+                    switch result {
+                    case .success(let artists):
+                        self.artists = artists.data
+                    case .failure(let error):
+                        self.errorMessage = error.localizedDescription
+                    }
                 }
-            }
+        }
     }
     
     func artistCellDidTapped(at indexpath: IndexPath) {

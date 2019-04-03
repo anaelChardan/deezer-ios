@@ -93,6 +93,7 @@
 #pragma - SearchArtistsViewModelDelegate
 - (void)searchArtistsViewModel:(SearchArtistsViewModel *)searchArtistsViewModel artistsValueChanged:(NSArray<Artist *> *)artists
 {
+    // If search has no result
     if(artists.count <= 0 && [self.searchBar.text length] > 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.2 animations:^{
@@ -102,7 +103,10 @@
                 [self.informationLabel layoutIfNeeded];
             }];
         });
-    } else if (artists.count <= 0 && [self.searchBar.text length] <= 0) {
+        [self.searchBar resignFirstResponder];
+    }
+    // If there is no text in search bar
+    else if (artists.count <= 0 && [self.searchBar.text length] <= 0) {
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.2 animations:^{
                 [self.informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
@@ -111,7 +115,10 @@
                 [self.informationLabel layoutIfNeeded];
             }];
         });
-    } else {
+        [self.searchBar resignFirstResponder];
+    }
+    // If search has results
+    else {
         dispatch_async(dispatch_get_main_queue(), ^{
             [UIView animateWithDuration:0.2 animations:^{
                 [self.informationLabel setAlpha:0];
@@ -168,6 +175,7 @@
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    [self.searchBar resignFirstResponder];
     [self.viewModel artistCellDidTappedAt:indexPath];
 }
 
