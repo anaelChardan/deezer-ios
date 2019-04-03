@@ -8,8 +8,6 @@
 
 import UIKit
 
-//TODO check [weak self] for every closures
-
 @objcMembers class DZRImageView: UIImageView {
     
     // MARK: - Properties

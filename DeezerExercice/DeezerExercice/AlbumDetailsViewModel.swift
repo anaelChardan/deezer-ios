@@ -61,12 +61,12 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     func loadAlbum(withArtistId id: Int) {
         NetworkService
             .shared
-            .fetchAlbums(withArtistId: id) { result in
+            .fetchAlbums(withArtistId: id) { [weak self] result in
                 switch result {
                 case .success(let albums):
-                    self.album = albums.data.first
+                    self?.album = albums.data.first
                 case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+                    self?.errorMessage = error.localizedDescription
                 }
             }
     }
@@ -74,7 +74,7 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
     func loadTracks(withAlbumId id: Int) {
         NetworkService
             .shared
-            .fetchTracks(withAlbumId: id) { result in
+            .fetchTracks(withAlbumId: id) { [weak self] result in
                 switch result {
                 case .success(let tracks):
                     var newTracks: [String:[Track]] = [:]
@@ -89,9 +89,9 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                         newTracks["\($0.diskNumber)"]?.append($0)
                     }
                     
-                    self.tracks = newTracks
+                    self?.tracks = newTracks
                 case .failure(let error):
-                    self.errorMessage = error.localizedDescription
+                    self?.errorMessage = error.localizedDescription
                 }
             }
     }

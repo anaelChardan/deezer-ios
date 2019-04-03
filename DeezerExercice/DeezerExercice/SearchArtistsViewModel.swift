@@ -65,12 +65,12 @@ import Foundation
         } else {
             NetworkService
                 .shared
-                .fetchArtists(withQuery: query) { result in
+                .fetchArtists(withQuery: query) { [weak self] result in
                     switch result {
                     case .success(let artists):
-                        self.artists = artists.data
+                        self?.artists = artists.data
                     case .failure(let error):
-                        self.errorMessage = error.localizedDescription
+                        self?.errorMessage = error.localizedDescription
                     }
                 }
         }

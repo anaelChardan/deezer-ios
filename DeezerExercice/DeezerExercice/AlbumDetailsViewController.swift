@@ -126,20 +126,21 @@ final class AlbumDetailsViewController: UIViewController {
 // MARK: - AlbumDetailsViewModelDelegate
 extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, albumValueChanged album: Album) {
+        let releaseDateSplit = album.releaseDate.split(separator: "-")
+        
+        self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
         self.titleLabel.text = album.title.uppercased()
         self.fansValueLabel.text = String(format: "%d", locale: Locale.current, album.fans)
         
-        let releaseDateSplit = album.releaseDate.split(separator: "-")
-        self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
-        
-        self.coverDZRImageView.loadAsync(withStringUrl: album.coverBig) {
+        self.viewModel?.loadTracks(withAlbumId: album.identifier)
+        self.coverDZRImageView.loadAsync(withStringUrl: album.coverBig) { [weak self] in
             UIView.animate(withDuration: 0.2, animations: {
-                self.coverDZRImageView.alpha = 1
+                self?.coverDZRImageView.alpha = 1
                 
-                self.view.layoutIfNeeded()
+                self?.view.layoutIfNeeded()
             })
         }
-        viewModel?.loadTracks(withAlbumId: album.identifier)
+        
         
         UIView.animate(withDuration: 0.2, animations: {
             self.titleLabel.alpha = 1
