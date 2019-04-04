@@ -89,7 +89,6 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                 case .success(let tracks):
                     var newTracks: [String:[Track]] = [:]
                     
-                    //TODO refactor this
                     //TODO add comments
                     
                     tracks.data.forEach {

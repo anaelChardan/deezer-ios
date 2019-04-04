@@ -71,7 +71,6 @@ import Foundation
                     case .success(let artists):
                         var newArtists: [String:[Artist]] = [:]
                         
-                        //TODO refactor this
                         //TODO add comments
                         
                         newArtists["populars"] = []
