@@ -14,6 +14,7 @@ protocol OtherArtistCellProtocol: class {
 
 @objcMembers final class OtherArtistCell: UICollectionViewCell {
     
+    // MARK: - Outlets
     @IBOutlet weak var artistDZRImageView: DZRImageView! {
         didSet {
             artistDZRImageView.contentMode = .scaleAspectFill
@@ -31,6 +32,14 @@ protocol OtherArtistCellProtocol: class {
         }
     }
     
+    @IBOutlet weak var accessoryImageView: UIImageView! {
+        didSet {
+            accessoryImageView.contentMode = .scaleAspectFit
+            accessoryImageView.image = DZRAssets.Icons.right
+            accessoryImageView.alpha = 0
+            accessoryImageView.tintColor = DZRColors.white
+        }
+    }
 }
 
 extension OtherArtistCell: OtherArtistCellProtocol {
@@ -39,6 +48,7 @@ extension OtherArtistCell: OtherArtistCellProtocol {
         
         UIView.animate(withDuration: 0.2) {
             self.artistNameLabel.alpha = 1
+            self.accessoryImageView.alpha = 1
             
             self.layoutIfNeeded()
         }

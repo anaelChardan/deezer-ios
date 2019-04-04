@@ -11,7 +11,8 @@ import UIKit
 @objcMembers class DZRAssets: NSObject {
     
     class Icons {
-        static let back = UIImage(named: "icon_back")?.withRenderingMode(.alwaysTemplate)
+        static let left = UIImage(named: "icon_left")?.withRenderingMode(.alwaysTemplate)
+        static let right = UIImage(named: "icon_right")?.withRenderingMode(.alwaysTemplate)
     }
     
 }

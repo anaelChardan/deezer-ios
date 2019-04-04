@@ -217,7 +217,7 @@
         return CGSizeMake(width, width * 1.6);
     }
     
-    return CGSizeMake(UIScreen.mainScreen.bounds.size.width, 60);
+    return CGSizeMake(UIScreen.mainScreen.bounds.size.width - 16, 60);
 }
 
 #pragma - PrepareForSegue

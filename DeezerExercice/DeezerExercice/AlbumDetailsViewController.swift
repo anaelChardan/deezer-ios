@@ -89,7 +89,7 @@ final class AlbumDetailsViewController: UIViewController {
         didSet {
             backButton.setTitle("", for: .normal)
             backButton.tintColor = DZRColors.white
-            backButton.setImage(DZRAssets.Icons.back, for: .normal)
+            backButton.setImage(DZRAssets.Icons.left, for: .normal)
         }
     }
     
