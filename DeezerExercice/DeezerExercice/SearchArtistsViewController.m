@@ -94,6 +94,9 @@
     [self.navigationController.navigationBar setTranslucent:NO];
     
     [self setTitle:@"Artists"];
+    
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loop) userInfo:nil repeats:YES];
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -101,6 +104,15 @@
     [super viewWillAppear:animated];
     
     [self.navigationController setNavigationBarHidden:NO animated:YES];
+}
+
+#pragma - Methods
+
+- (void)loop
+{
+    if (![self.viewModel.lastQueryString isEqualToString:self.searchBar.text]) {
+        [self.viewModel searchArtistsWithQuery:self.searchBar.text];
+    }
 }
 
 #pragma - Actions
@@ -157,11 +169,6 @@
 }
 
 #pragma - UISearchBarDelegate
-- (void)searchBar:(UISearchBar *)searchBar textDidChange:(NSString *)searchText
-{
-    [self.viewModel searchArtistsWithQuery:searchText];
-}
-
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];

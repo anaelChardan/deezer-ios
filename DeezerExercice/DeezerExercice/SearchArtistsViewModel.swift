@@ -22,6 +22,8 @@ import Foundation
     var errorMessage: String? { get }
     var selectedArtist: Artist? { get }
     
+    var lastQueryString: String { get }
+    
     var delegate: SearchArtistsViewModelDelegate? { get set }
 
     // MARK: - Methods
@@ -57,10 +59,14 @@ import Foundation
         }
     }
     
+    var lastQueryString: String = ""
+    
     weak var delegate: SearchArtistsViewModelDelegate?
     
     // MARK: - Methods
     func searchArtists(withQuery query: String) {
+        self.lastQueryString = query
+        
         if query.isEmpty {
             self.artists = [:]
         } else {
