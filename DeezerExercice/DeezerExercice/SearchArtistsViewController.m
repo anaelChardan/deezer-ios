@@ -34,6 +34,7 @@
     [layout setMinimumInteritemSpacing:12];
     [layout setItemSize:CGSizeMake(width, width * 1.6)];
     [layout setSectionInset:UIEdgeInsetsMake(8, 8, 0, 8)];
+    [layout setHeaderReferenceSize:CGSizeMake(UIScreen.mainScreen.bounds.size.width, 70)];
     
     [_collectionView setCollectionViewLayout:layout];
 }
@@ -158,15 +159,37 @@
 }
 
 #pragma - UICollectionViewDataSource
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
+{
+    return [self.viewModel.artists count];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return self.viewModel.artists.count;
+    NSLog(@"%lu", (unsigned long)[[self.viewModel.artists objectForKey: [self.viewModel sectionNameWith:section]] count]);
+    return [[self.viewModel.artists objectForKey: [self.viewModel sectionNameWith:section]] count];
+}
+
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath
+{
+    SearchArtistsHeaderView *header = nil;
+    
+    if (kind == UICollectionElementKindSectionHeader) {
+        header = [collectionView dequeueReusableSupplementaryViewOfKind:kind
+                                                    withReuseIdentifier:@"SearchArtistsHeaderView"
+                                                           forIndexPath:indexPath];
+        
+        [header displayWithTitle: indexPath.section == 0 ? @"Populars" : @"Others"];
+    }
+    
+    return header;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    ArtistCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ArtistCell class]) forIndexPath:indexPath];
-    Artist *artist = [self.viewModel.artists objectAtIndex:indexPath.row];
+    ArtistCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([ArtistCell class])
+                                                                 forIndexPath:indexPath];
+    Artist *artist = [[self.viewModel.artists objectForKey:[self.viewModel sectionNameWith:indexPath.section]] objectAtIndex:indexPath.row];
     
     [cell display:artist.name withPictureUrl:artist.pictureUrl];
     

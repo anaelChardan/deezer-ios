@@ -17,11 +17,13 @@ import Foundation
     var identifier: Int
     var name: String
     var pictureUrl: String
+    var fans: Int
     
     enum CodingKeys: String, CodingKey {
         case identifier = "id"
         case name
         case pictureUrl = "picture_medium"
+        case fans = "nb_fan"
     }
 }
 

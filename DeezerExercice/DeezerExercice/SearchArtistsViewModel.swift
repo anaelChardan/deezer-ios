@@ -9,7 +9,7 @@ import Foundation
 
 @objc protocol SearchArtistsViewModelDelegate {
     
-    func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, artistsValueChanged artists: [Artist])
+    func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, artistsValueChanged artists: [String: [Artist]])
     func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, selectedArtistValueChanged selectedArtist: Artist)
     func searchArtistsViewModel(_ searchArtistsViewModel: SearchArtistsViewModel, errorMessageValueChanged errorMessage: String)
 
@@ -18,7 +18,7 @@ import Foundation
 @objc protocol SearchArtistsViewModelProtocol {
     
     // MARK: - Properties
-    var artists: [Artist]? { get }
+    var artists: [String: [Artist]]? { get }
     var errorMessage: String? { get }
     var selectedArtist: Artist? { get }
     
@@ -27,12 +27,13 @@ import Foundation
     // MARK: - Methods
     func searchArtists(withQuery query: String)
     func artistCellDidTapped(at indexpath: IndexPath)
+    func sectionName(with section: Int) -> String
 }
 
 @objcMembers final class SearchArtistsViewModel: NSObject, SearchArtistsViewModelProtocol {
     
     // MARK: - Properties
-    var artists: [Artist]? {
+    var artists: [String :[Artist]]? {
         didSet {
             if let artists = self.artists {
                 self.delegate?.searchArtistsViewModel(self, artistsValueChanged: artists)
@@ -61,14 +62,26 @@ import Foundation
     // MARK: - Methods
     func searchArtists(withQuery query: String) {
         if query.isEmpty {
-            self.artists = []
+            self.artists = [:]
         } else {
             NetworkService
                 .shared
                 .fetchArtists(withQuery: query) { [weak self] result in
                     switch result {
                     case .success(let artists):
-                        self?.artists = artists.data
+                        var newArtists: [String:[Artist]] = [:]
+                        
+                        //TODO refactor this
+                        //TODO add comments
+                        
+                        newArtists["populars"] = []
+                        newArtists["others"] = []
+                        
+                        artists.data.forEach { artist in
+                            newArtists[artist.fans > 150000 ? "populars" : "others"]?.append(artist)
+                        }
+                    
+                        self?.artists = newArtists
                     case .failure(let error):
                         self?.errorMessage = error.localizedDescription
                     }
@@ -77,6 +90,10 @@ import Foundation
     }
     
     func artistCellDidTapped(at indexpath: IndexPath) {
-        self.selectedArtist = self.artists?[indexpath.row]
+        self.selectedArtist = self.artists?[sectionName(with: indexpath.section)]?[indexpath.row]
+    }
+    
+    func sectionName(with section: Int) -> String {
+        return section == 0 ? "populars" : "others"
     }
 }
