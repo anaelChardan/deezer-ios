@@ -22,6 +22,16 @@
                ReferencedContainer = "container:DeezerExercice.xcodeproj">
             </BuildableReference>
          </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "5240DBA32256426600FD5CA8"
+               BuildableName = "DeezerExerciceUITests.xctest"
+               BlueprintName = "DeezerExerciceUITests"
+               ReferencedContainer = "container:DeezerExercice.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <AdditionalOptions>
       </AdditionalOptions>

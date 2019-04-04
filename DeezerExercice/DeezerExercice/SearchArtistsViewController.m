@@ -74,6 +74,7 @@
     [_searchButton.layer setCornerRadius:4];
     [_searchButton.titleLabel setFont:DZRFonts.medium];
     [_searchButton setContentEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 12)];
+    [_searchButton setAccessibilityLabel:@"searchButton"];
 }
 
 #pragma - Lifecycle
