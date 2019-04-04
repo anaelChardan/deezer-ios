@@ -12,6 +12,7 @@
 
 @property (nonatomic, weak) IBOutlet UICollectionView *collectionView;
 @property (nonatomic, weak) IBOutlet UILabel *informationLabel;
+@property (weak, nonatomic) IBOutlet UIButton *searchButton;
 
 @property (nonatomic) UISearchBar *searchBar;
 
@@ -63,6 +64,18 @@
     [_informationLabel setFont:DZRFonts.medium];
 }
 
+-(void)setSearchButton:(UIButton *)searchButton
+{
+    _searchButton = searchButton;
+    
+    [_searchButton setTitle:@"Search !" forState:UIControlStateNormal];
+    [_searchButton setTitleColor:DZRColors.white forState:UIControlStateNormal];
+    [_searchButton setBackgroundColor:DZRColors.pink];
+    [_searchButton.layer setCornerRadius:4];
+    [_searchButton.titleLabel setFont:DZRFonts.medium];
+    [_searchButton setContentEdgeInsets:UIEdgeInsetsMake(0, 12, 0, 12)];
+}
+
 #pragma - Lifecycle
 - (void)viewDidLoad
 {
@@ -89,42 +102,44 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
+#pragma - Actions
+- (IBAction)searchButtonDidTap:(UIButton *)sender
+{
+    [self.searchBar becomeFirstResponder];
+}
+
 #pragma - SearchArtistsViewModelDelegate
 - (void)searchArtistsViewModel:(SearchArtistsViewModel *)searchArtistsViewModel artistsValueChanged:(NSArray<Artist *> *)artists
 {
     // If search has no result
     if(artists.count <= 0 && [self.searchBar.text length] > 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.2 animations:^{
-                [self.informationLabel setText:@"Your search returned no results, try another name"];
-                [self.informationLabel setAlpha:1];
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.informationLabel setText:@"Your search returned no results, try another name"];
+            [self.informationLabel setAlpha:1];
 
-                [self.informationLabel layoutIfNeeded];
-            }];
-        });
+            [self.view layoutIfNeeded];
+        }];
         [self.searchBar resignFirstResponder];
     }
     // If there is no text in search bar
     else if (artists.count <= 0 && [self.searchBar.text length] <= 0) {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.2 animations:^{
-                [self.informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
-                [self.informationLabel setAlpha:1];
-
-                [self.informationLabel layoutIfNeeded];
-            }];
-        });
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
+            [self.informationLabel setAlpha:1];
+            [self.searchButton setAlpha:1];
+            
+            [self.view layoutIfNeeded];
+        }];
         [self.searchBar resignFirstResponder];
     }
     // If search has results
     else {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.2 animations:^{
-                [self.informationLabel setAlpha:0];
-
-                [self.informationLabel layoutIfNeeded];
-            }];
-        });
+        [UIView animateWithDuration:0.2 animations:^{
+            [self.informationLabel setAlpha:0];
+            [self.searchButton setAlpha:0];
+            
+            [self.view layoutIfNeeded];
+        }];
     }
 
     [self.collectionView reloadData];

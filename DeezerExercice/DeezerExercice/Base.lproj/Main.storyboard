@@ -164,7 +164,7 @@
                                 </connections>
                             </collectionView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Information label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wsl-e4-TrU">
-                                <rect key="frame" x="143" y="438" width="128" height="20.5"/>
+                                <rect key="frame" x="143" y="258.5" width="128" height="20.5"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="lessThanOrEqual" constant="250" id="zR1-9P-aJM"/>
                                 </constraints>
@@ -172,21 +172,34 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ePW-HS-uLX">
+                                <rect key="frame" x="158.5" y="311" width="97" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="mxV-aQ-Vu1"/>
+                                </constraints>
+                                <state key="normal" title="Search button"/>
+                                <connections>
+                                    <action selector="searchButtonDidTap:" destination="t1i-yi-ig2" eventType="touchUpInside" id="x9J-fA-8m1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
+                            <constraint firstItem="ePW-HS-uLX" firstAttribute="centerX" secondItem="XnD-JA-gNf" secondAttribute="centerX" id="Ahv-ge-JQN"/>
                             <constraint firstItem="G2z-Iq-UIH" firstAttribute="top" secondItem="29h-Lx-bSm" secondAttribute="bottom" id="FSO-lR-ID0"/>
                             <constraint firstAttribute="bottom" secondItem="G2z-Iq-UIH" secondAttribute="bottom" id="R3E-Jo-teJ"/>
                             <constraint firstAttribute="trailing" secondItem="G2z-Iq-UIH" secondAttribute="trailing" id="Sx6-bp-pdy"/>
                             <constraint firstItem="wsl-e4-TrU" firstAttribute="centerX" secondItem="XnD-JA-gNf" secondAttribute="centerX" id="Zjd-xd-6DB"/>
+                            <constraint firstItem="ePW-HS-uLX" firstAttribute="top" secondItem="wsl-e4-TrU" secondAttribute="bottom" constant="32" id="aVS-Ce-x7Y"/>
                             <constraint firstItem="G2z-Iq-UIH" firstAttribute="leading" secondItem="XnD-JA-gNf" secondAttribute="leading" id="vKY-0v-G89"/>
-                            <constraint firstItem="wsl-e4-TrU" firstAttribute="centerY" secondItem="XnD-JA-gNf" secondAttribute="centerY" id="vMr-kH-hyH"/>
+                            <constraint firstItem="wsl-e4-TrU" firstAttribute="centerY" secondItem="XnD-JA-gNf" secondAttribute="centerY" multiplier="0.6" id="vMr-kH-hyH"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="rtH-4h-Mgp"/>
                     <connections>
                         <outlet property="collectionView" destination="G2z-Iq-UIH" id="IIW-82-eMc"/>
                         <outlet property="informationLabel" destination="wsl-e4-TrU" id="dAe-pM-UCC"/>
+                        <outlet property="searchButton" destination="ePW-HS-uLX" id="cDI-we-kzZ"/>
                         <segue destination="WPd-oW-F4D" kind="show" identifier="tappedOnArtistCell" id="hZd-UQ-XkE"/>
                     </connections>
                 </viewController>
