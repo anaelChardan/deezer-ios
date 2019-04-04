@@ -22,7 +22,7 @@
 
 @implementation SearchArtistsViewController
 
-#pragma - Outlets
+#pragma mark - Outlets
 - (void)setCollectionView:(UICollectionView *)collectionView
 {
     _collectionView = collectionView;
@@ -77,7 +77,7 @@
     [_searchButton setAccessibilityLabel:@"searchButton"];
 }
 
-#pragma - Lifecycle
+#pragma mark - Lifecycle
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -95,8 +95,10 @@
     
     [self setTitle:@"Artists"];
     
+    //Check every 500ms if the last query sent to the server is different from the text in the search bar.
+    //If this is different, do a new request with text in the search bar.
+    //If not, do nothing.
     [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(checkIfWeNeedToDoARequest) userInfo:nil repeats:YES];
-    
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -106,7 +108,11 @@
     [self.navigationController setNavigationBarHidden:NO animated:YES];
 }
 
-#pragma - Methods
+#pragma mark - Methods
+
+/*!
+ @brief Check every 500ms if the last query sent to the server is different from the text in the search bar. If this is different, do a new request with text in the search bar. If not, do nothing.
+ */
 - (void)checkIfWeNeedToDoARequest
 {
     if (![self.viewModel.lastQueryString isEqualToString:self.searchBar.text]) {
@@ -114,16 +120,21 @@
     }
 }
 
-#pragma - Actions
+#pragma mark - Actions
+/*!
+ @brief Search bar become first responder.
+ 
+ @param sender The button that send the event.
+ */
 - (IBAction)searchButtonDidTap:(UIButton *)sender
 {
     [self.searchBar becomeFirstResponder];
 }
 
-#pragma - SearchArtistsViewModelDelegate
+#pragma mark - SearchArtistsViewModelDelegate
 - (void)searchArtistsViewModel:(SearchArtistsViewModel *)searchArtistsViewModel artistsValueChanged:(NSArray<Artist *> *)artists
 {
-    // If search has no result
+    // If search has no result, show a message to tell that a bad query.
     if(artists.count <= 0 && [self.searchBar.text length] > 0) {
         [UIView animateWithDuration:0.2 animations:^{
             [self.informationLabel setText:@"Your search returned no results, try another name"];
@@ -133,7 +144,7 @@
         }];
         [self.searchBar resignFirstResponder];
     }
-    // If there is no text in search bar
+    // If there is no text in search bar, show a message to search an artist.
     else if (artists.count <= 0 && [self.searchBar.text length] <= 0) {
         [UIView animateWithDuration:0.2 animations:^{
             [self.informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
@@ -144,7 +155,7 @@
         }];
         [self.searchBar resignFirstResponder];
     }
-    // If search has results
+    // If search has results, show artists and hide information label and button
     else {
         [UIView animateWithDuration:0.2 animations:^{
             [self.informationLabel setAlpha:0];
@@ -167,7 +178,7 @@
     [self showAlertErrorWithMessage:errorMessage];
 }
 
-#pragma - UISearchBarDelegate
+#pragma mark - UISearchBarDelegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     [searchBar resignFirstResponder];
@@ -178,7 +189,7 @@
     [searchBar resignFirstResponder];
 }
 
-#pragma - UICollectionViewDataSource
+#pragma mark - UICollectionViewDataSource
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView
 {
     return [self.viewModel.artists count];
@@ -206,6 +217,7 @@
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //If cell is in the first section, use the "popular" cell type.
     if (indexPath.section == 0) {
         PopularArtistCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"PopularArtistCell"
                                                                             forIndexPath:indexPath];
@@ -216,6 +228,7 @@
         return cell;
     }
     
+    //Else, cell is in the second section, show the "other" cell type.
     OtherArtistCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:@"OtherArtistCell"
                                                                         forIndexPath:indexPath];
     Artist *artist = [[self.viewModel.artists objectForKey:[self.viewModel sectionNameWith:indexPath.section]] objectAtIndex:indexPath.row];
@@ -231,14 +244,16 @@
     [self.viewModel artistCellDidTappedAt:indexPath];
 }
 
-#pragma - UICollectionViewDelegate
+#pragma mark - UICollectionViewDelegate
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath
 {
+    //3 cells in a row for the first (popular) section.
     if (indexPath.section == 0) {
         CGFloat width = UIScreen.mainScreen.bounds.size.width / 3 - 16;
         return CGSizeMake(width, width * 1.6);
     }
     
+    //1 cell in a row for the second (others) section
     return CGSizeMake(UIScreen.mainScreen.bounds.size.width - 16, 60);
 }
 
@@ -247,7 +262,7 @@
     [_searchBar resignFirstResponder];
 }
 
-#pragma - PrepareForSegue
+#pragma mark - PrepareForSegue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     if([segue.identifier isEqualToString:@"tappedOnArtistCell"]) {

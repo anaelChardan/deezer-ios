@@ -9,8 +9,31 @@ import Foundation
 
 protocol NetworkServiceProtocol: class {
     
+    /**
+     Fetch albums with a given artist id in background thread from Deezer API.
+     
+     - parameters:
+     - id: The artist's identifier.
+     - completion: Code executed in case of success or failure in the main thread.
+     */
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void)
+    
+    /**
+     Fetch tracks with a given album id from Deezer API.
+     
+     - parameters:
+     - id: The album's identifier.
+     - completion: Code executed in case of success or failure in the main thread.
+     */
     func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList, DZRError>) -> Void)
+    
+    /**
+     Fetch artists with a given query from Deezer API.
+     
+     - parameters:
+     - query: Text that is use to search an artist by his name.
+     - completion: Code executed in case of success or failure in the main thread.
+     */
     func fetchArtists(withQuery query: String, completion: @escaping (Result<ArtistList, DZRError>) -> Void)
     
 }
@@ -21,14 +44,6 @@ final class NetworkService: NetworkServiceProtocol {
     static let shared: NetworkServiceProtocol = NetworkService()
     
     // MARK: - Methods
-    
-    /**
-     Fetch albums with a given artist id from Deezer API.
-     
-     - parameters:
-        - id: The artist's identifier.
-        - completion: Code executed in case of success or failure.
-     */
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void) {
         guard let url = URL(string: "https://api.deezer.com/artist/\(id)/albums") else {
             completion(.failure(DZRError.invalidURL))
@@ -50,13 +65,6 @@ final class NetworkService: NetworkServiceProtocol {
         }.resume()
     }
     
-    /**
-     Fetch tracks with a given album id from Deezer API.
-     
-     - parameters:
-        - id: The album's identifier.
-        - completion: Code executed in case of success or failure.
-     */
     func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList, DZRError>) -> Void) {
         guard let url = URL(string: "https://api.deezer.com/album/\(id)/tracks") else {
             completion(.failure(DZRError.invalidURL))
@@ -78,13 +86,6 @@ final class NetworkService: NetworkServiceProtocol {
         }.resume()
     }
     
-    /**
-     Fetch artists with a given query from Deezer API.
-     
-     - parameters:
-        - query: Text that should use to search an artist by his name.
-        - completion: Code executed in case of success or failure.
-     */
     func fetchArtists(withQuery query: String, completion: @escaping (Result<ArtistList, DZRError>) -> Void) {
         guard
             let stringUrl = "http://api.deezer.com/search/artist?q=\(query)&limit=150".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),

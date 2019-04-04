@@ -9,9 +9,40 @@ import Foundation
 
 protocol AlbumDetailsViewModelDelegate: class {
     
+    /**
+     Update view with the new album data.
+     
+     - parameters:
+        - albumDetailsViewModel: The view model that update the value.
+        - album: Album that has been updated.
+     */
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, albumValueChanged album: Album)
+    
+    /**
+     Update view with the new tracks data.
+     
+     - parameters:
+        - albumDetailsViewModel: The view model that update the value.
+        - tracks: Tracks that has been updated.
+     */
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String:[Track]])
+    
+    /**
+     Update view with the new playing music data.
+     
+     - parameters:
+        - albumDetailsViewModel: The view model that update the value.
+        - track: Playing music that has been updated.
+     */
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, playingValueChanged track: Track?)
+    
+    /**
+     Update view with the new error message.
+     
+     - parameters:
+        - albumDetailsViewModel: The view model that update the value.
+        - errorMessage: Error message that has been updated.
+     */
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, errorMessageValueChanged errorMessage: String)
     
 }
@@ -19,16 +50,53 @@ protocol AlbumDetailsViewModelDelegate: class {
 protocol AlbumDetailsViewModelProtocol: class {
     
     // MARK: - Properties
+    
+    /**
+     Album shown.
+     */
     var album: Album? { get }
+    
+    /**
+     All tracks of the current shown album.
+     */
     var tracks: [String: [Track]]? { get }
+    
+    /**
+     Current playing track. Nil if there is no one.
+     */
     var playingTrack: Track? { get }
+    
+    /**
+     Message shown to the use in case of error.
+     */
     var errorMessage: String? { get }
     
     var delegate: AlbumDetailsViewModelDelegate? { get set }
     
     // MARK: - Methods
+    
+    /**
+     Fetch albums with a given artist id from Deezer API.
+     
+     - parameters:
+     - id: The artist's identifier.
+     */
     func loadAlbum(withArtistId id: Int)
+    
+    /**
+     Fetch tracks with a given album id from Deezer API.
+     
+     - parameters:
+     - id: The album's identifier.
+     */
     func loadTracks(withAlbumId id: Int)
+    
+    /**
+     Play or stop the music at a given indexPath.
+     
+     - parameters:
+     - indexPath: Identify the music.
+     */
     func trackCellDidTapped(at indexPath: IndexPath)
 }
 

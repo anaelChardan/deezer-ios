@@ -9,6 +9,13 @@
 import UIKit
 
 protocol OtherArtistCellProtocol: class {
+    /**
+     Display information to the view.
+     
+     - parameters:
+        - name: The artist's name.
+        - pictureUrl: String url of artist's avatar.
+     */
     func display(name: String, pictureUrl: String)
 }
 

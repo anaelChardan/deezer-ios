@@ -10,6 +10,9 @@ import XCTest
 
 class PlayerServiceTests: XCTestCase {
     
+    /**
+     Test to play a track from the remote server.
+     */
     func testPlaySongFromRemoteUrl() {
         PlayerService
             .shared
@@ -18,6 +21,9 @@ class PlayerServiceTests: XCTestCase {
         XCTAssertTrue(PlayerService.shared.isPlaying, "Player is not playing")
     }
     
+    /**
+     Test to pause a playing song.
+     */
     func testPlayerCanPauseASong() {
         PlayerService
             .shared

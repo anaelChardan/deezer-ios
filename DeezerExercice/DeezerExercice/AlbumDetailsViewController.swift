@@ -97,6 +97,10 @@ final class AlbumDetailsViewController: UIViewController {
     }
     
     // MARK: - Properties
+    
+    /**
+     Artist id given by the SearchArtistsViewController to show the right album.
+     */
     @objc var artistId: Int = 0
     
     private var viewModel: AlbumDetailsViewModelProtocol?
@@ -123,6 +127,13 @@ final class AlbumDetailsViewController: UIViewController {
     }
     
     // MARK: - Actions
+    
+    /**
+     Go back to the search view.
+     
+     - parameters:
+        - sender: The button that send the event.
+     */
     @IBAction func backButtonDidTap(_ sender: UIButton) {
         self.navigationController?.popViewController(animated: true)
     }
@@ -131,19 +142,23 @@ final class AlbumDetailsViewController: UIViewController {
 // MARK: - AlbumDetailsViewModelDelegate
 extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, albumValueChanged album: Album) {
-        let releaseDateSplit = album.releaseDate.split(separator: "-")
         
+        //Convert date from "yyyy-mm-dd" to "dd/mm/yyyy".
+        let releaseDateSplit = album.releaseDate.split(separator: "-")
         self.releaseDateValueLabel.text = "\(releaseDateSplit[2])/\(releaseDateSplit[1])/\(releaseDateSplit[0])"
+        
         self.titleLabel.text = album.title.uppercased()
+        
+        //Convert numbers to the local format. 75000 -> 75,000 or 75 000 ...
         self.fansValueLabel.text = String(format: "%d", locale: Locale.current, album.fans)
         
         self.viewModel?.loadTracks(withAlbumId: album.identifier)
         
-        self.coverDZRImageView.loadAsync(withStringUrl: album.coverUrlBig) { [weak self] in
+        self.coverDZRImageView.loadAsync(withStringUrl: album.coverUrlBig) {
             UIView.animate(withDuration: 0.2, animations: {
-                self?.coverDZRImageView.alpha = 1
+                self.coverDZRImageView.alpha = 1
                 
-                self?.view.layoutIfNeeded()
+                self.view.layoutIfNeeded()
             })
         }
         

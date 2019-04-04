@@ -11,10 +11,24 @@ import AVFoundation
 protocol PlayerServiceProtocol: class {
     
     // MARK: - Properties
+    /**
+     Is the music is playing or not.
+    */
     var isPlaying: Bool { get }
     
     // MARK: - Methods
+    
+    /**
+     Stream a song from a remote url.
+     
+     - parameters:
+        - stringUrl: Url where the song is located online.
+     */
     func play(withStringUrl stringUrl: String)
+    
+    /**
+     Pause the playing music.
+     */
     func pause()
     
 }
@@ -31,13 +45,6 @@ final class PlayerService: PlayerServiceProtocol {
     private var player: AVPlayer?
     
     // MARK: - Methods
-    
-    /**
-     Stream a song from a remote url.
-     
-     - parameters:
-        - stringUrl: Url where the song is located online.
-     */
     func play(withStringUrl stringUrl: String) {
         guard let url = URL(string: stringUrl) else { return }
         
@@ -45,10 +52,6 @@ final class PlayerService: PlayerServiceProtocol {
         self.player?.play()
     }
     
-    /**
-     Pause the playing music.
-     
-     */
     func pause() {
         self.player?.pause()
     }

@@ -10,6 +10,9 @@ import XCTest
 
 final class AlbumTests: XCTestCase {
     
+    /**
+     Test to create an album with a json string.
+     */
     func testInitAlbum() {
         let jsonString = """
         {
@@ -48,6 +51,9 @@ final class AlbumTests: XCTestCase {
         XCTAssertEqual(album.releaseDate, "2013-05-17", "Wrong albbum release date")
     }
     
+    /**
+     Test to create an album with a json string.
+     */
     func testInitAlbumList() {
         let jsonString = """
         {

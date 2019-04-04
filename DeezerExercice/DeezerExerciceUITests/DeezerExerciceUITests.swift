@@ -13,7 +13,7 @@ class DeezerExerciceUITests: XCTestCase {
     // MARK: - Properties
     private var app: XCUIApplication!
     
-    // MARK: - Methods
+    // MARK: - Lifecycle
     override func setUp() {
         continueAfterFailure = false
 
@@ -21,6 +21,11 @@ class DeezerExerciceUITests: XCTestCase {
         app.launch()
     }
 
+    // MARK: - Methods
+    
+    /**
+     Test the flow of the app. Search an artist and show his album and its tracks.
+     */
     func testCanShowAlbumOfDavidGuetta() {
         app.buttons["searchButton"].tap()
         app.navigationBars.element.typeText("David Guetta")

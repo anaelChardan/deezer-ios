@@ -11,6 +11,9 @@ import UIKit
 
 class CacheServiceTests: XCTestCase {
     
+    /**
+     Test to store and retreive an image in cache.
+     */
     func testSaveAndGetUIImage() {
         guard let image = UIImage(named: "icon_left") else {
             XCTFail("Failed to load image")

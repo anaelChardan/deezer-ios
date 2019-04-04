@@ -10,6 +10,9 @@ import XCTest
 
 final class ArtistTests: XCTestCase {
     
+    /**
+     Test to create an artist with a json string.
+     */
     func testInitArtist() {
         let jsonString = """
         {
@@ -45,6 +48,9 @@ final class ArtistTests: XCTestCase {
         XCTAssertEqual(artist.fans, 64221, "Wrong artist fans")
     }
     
+    /**
+     Test to create a artists with a json string.
+     */
     func testInitArtistList() {
         let jsonString = """
         {

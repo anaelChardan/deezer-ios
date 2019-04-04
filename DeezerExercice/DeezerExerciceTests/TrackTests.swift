@@ -10,6 +10,9 @@ import XCTest
 
 final class TrackTests: XCTestCase {
     
+    /**
+     Test to create a track with a json string.
+     */
     func testInitTrack() {
         let jsonString = """
         {
@@ -56,6 +59,9 @@ final class TrackTests: XCTestCase {
         XCTAssertEqual(track.previewUrl, "https://cdns-preview-e.dzcdn.net/stream/c-e77d23e0c8ed7567a507a6d1b6a9ca1b-7.mp3", "Wrong track preview url")
     }
     
+    /**
+     Test to create a track with a json string.
+     */
     func testInitTrackList() {
         let jsonString = """
         {

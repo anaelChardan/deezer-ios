@@ -17,8 +17,7 @@
 
 @implementation PopularArtistCell
 
-#pragma - Outlets -
-
+#pragma mark - Outlets
 - (void)setArtistDZRImageView:(DZRImageView *)artistDZRImageView
 {
     _artistDZRImageView = artistDZRImageView;
@@ -47,7 +46,7 @@
     [_gradientBackgroundView gradientWithColors:@[(id)[UIColor clearColor], (id)[DZRColors.purple colorWithAlphaComponent:0.7]]];
 }
 
-#pragma - Methods -
+#pragma mark - Methods
 - (void)display:(NSString *)name withPictureUrl:(NSString *)pictureUrl
 {
     [self.artistNameLabel setText:name];

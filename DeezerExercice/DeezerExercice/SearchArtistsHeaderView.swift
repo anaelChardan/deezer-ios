@@ -9,6 +9,13 @@
 import UIKit
 
 protocol SearchArtistsHeaderViewProtocol {
+    
+    /**
+     Display information on the view.
+     
+     - parameters:
+         - title: Section name.
+     */
     func display(title: String)
 }
 

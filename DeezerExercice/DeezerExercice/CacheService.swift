@@ -10,7 +10,24 @@ import Foundation
 
 protocol CacheServiceProtocol: class {
     
+    /**
+     Save an image in memory cache.
+     
+     - parameters:
+        - image: Image to save.
+        - key: String to store the image to cache.
+     */
     func save(image: UIImage, forKey key: String)
+    
+    /**
+     Get a saved image from cache.
+     
+     - returns:
+     The image stored in cache. Could be nil.
+     
+     - parameters:
+        - key: String to retreive the image from cache.
+     */
     func get(forKey key: String) -> UIImage?
     
 }
@@ -28,27 +45,10 @@ class CacheService: CacheServiceProtocol {
     }
     
     // MARK: - Methods
-    
-    /**
-     Save an image in memory cache.
-     
-     - parameters:
-        - image: Image to save.
-        - key: String to store the image to cache.
-     */
     func save(image: UIImage, forKey key: String) {
         imageCache.setObject(image, forKey: key as NSString)
     }
     
-    /**
-     Get a saved image from cache.
-     
-     - returns:
-     The image stored in cache. Could be nil.
-     
-     - parameters:
-        - key: String to retreive the image from cache.
-     */
     func get(forKey key: String) -> UIImage? {
         return imageCache.object(forKey: key as NSString)
     }

@@ -10,8 +10,11 @@ import XCTest
 
 final class NetworkServiceTests: XCTestCase {
     
-    
     // MARK: - Test fetch albums
+    
+    /**
+     Test to fetch an album from the remote server.
+     */
     func testFetchAlbums() {
         let expectation = self.expectation(description: "Fetch albums")
         
@@ -34,6 +37,9 @@ final class NetworkServiceTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    /**
+     Test to fetch an album from the remote server with a wrong artist id.
+     */
     func testFetchAlbumsWithWrongArtistId() {
         let expectation = self.expectation(description: "Fetch albums")
         
@@ -54,6 +60,10 @@ final class NetworkServiceTests: XCTestCase {
     }
     
     // MARK: - Test fetch artists
+    
+    /**
+     Test to fetch an artist from the remote server.
+     */
     func testFetchArtists() {
         let expectation = self.expectation(description: "Fetch artists")
         
@@ -76,6 +86,9 @@ final class NetworkServiceTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    /**
+     Test to fetch an artist from the remote server with space in his name, like "David Guetta".
+     */
     func testFetchArtistsWithSpaceInName() {
         let expectation = self.expectation(description: "Fetch artists")
         
@@ -98,6 +111,9 @@ final class NetworkServiceTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    /**
+     Test to fetch an artist from the remote server with a strang query, like "zefoiz^".
+     */
     func testFetchArtistsWithWrongQuery() {
         let expectation = self.expectation(description: "Fetch artists")
         
@@ -118,6 +134,10 @@ final class NetworkServiceTests: XCTestCase {
     }
     
     // MARK: - Test fetch tracks
+    
+    /**
+     Test to fetch tracks from the remote server.
+     */
     func testFetchTracks() {
         let expectation = self.expectation(description: "Fetch tracks")
         
@@ -140,6 +160,9 @@ final class NetworkServiceTests: XCTestCase {
         waitForExpectations(timeout: 5, handler: nil)
     }
     
+    /**
+     Test to fetch a track from the remote server with a wrong album id.
+     */
     func testFetchTracksWithWrongAlbumId() {
         let expectation = self.expectation(description: "Fetch tracks")
         

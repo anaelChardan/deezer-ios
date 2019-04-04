@@ -9,6 +9,15 @@
 import UIKit
 
 protocol TrackCellProtocol {
+    /**
+     Display information to the view.
+     
+     - parameters:
+        - trackPosition: The tracks' position.
+        - title: The tracks' position.
+        - duration: The tracks' duration.
+        - isHighlight: Determine the color of the titleLabel depending on the track status. Play or pause.
+     */
     func display(trackPosition: String, title: String, duration: String, isHighlight: Bool)
 }
 

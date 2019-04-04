@@ -10,6 +10,9 @@ import XCTest
 
 class DZRImageViewTests: XCTestCase {
     
+    /**
+     Test to load an image located online.
+     */
     func testLoadImageAsync() {
         let dzrImageView = DZRImageView()
         let expectation = self.expectation(description: "Fetch image")
