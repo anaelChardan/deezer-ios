@@ -7,6 +7,8 @@
 //
 import Foundation
 
+//TODO cancel request when we change screen
+
 protocol NetworkServiceProtocol: class {
     
     func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void)

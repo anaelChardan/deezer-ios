@@ -20,6 +20,12 @@ import UIKit
         self.stringUrl = stringUrl
         self.image = nil
         
+        if let imageFromCache = CacheService.shared.get(forKey: stringUrl) {
+            self.image = imageFromCache
+            completionSuccess?()
+            return
+        }
+        
         guard let url = URL(string: stringUrl) else {
             return
         }
@@ -35,6 +41,9 @@ import UIKit
             DispatchQueue.main.async {
                 if self?.stringUrl == stringUrl {
                     self?.image = image
+                    CacheService
+                        .shared
+                        .save(image: image, forKey: stringUrl)
                     completionSuccess?()
                 }
             }

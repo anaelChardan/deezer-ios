@@ -28,6 +28,9 @@
 		5240DB9C2256408900FD5CA8 /* DZRImageViewTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240DB9B2256408900FD5CA8 /* DZRImageViewTests.swift */; };
 		5240DB9D225640B000FD5CA8 /* DZRImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52EE47A02254D31000D8409B /* DZRImageView.swift */; };
 		5240DBA72256426600FD5CA8 /* DeezerExerciceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240DBA62256426600FD5CA8 /* DeezerExerciceUITests.swift */; };
+		5240DBAF22565BFD00FD5CA8 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240DBAE22565BFD00FD5CA8 /* CacheService.swift */; };
+		5240DBB1225662A300FD5CA8 /* CacheServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240DBB0225662A300FD5CA8 /* CacheServiceTests.swift */; };
+		5240DBB2225662D400FD5CA8 /* CacheService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240DBAE22565BFD00FD5CA8 /* CacheService.swift */; };
 		5287D00A22533CE40068B509 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00922533CE40068B509 /* Album.swift */; };
 		5287D00E225341370068B509 /* DZRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00D225341370068B509 /* DZRError.swift */; };
 		5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D012225352490068B509 /* UIViewController+Alert.swift */; };
@@ -84,6 +87,8 @@
 		5240DBA42256426600FD5CA8 /* DeezerExerciceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeezerExerciceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5240DBA62256426600FD5CA8 /* DeezerExerciceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeezerExerciceUITests.swift; sourceTree = "<group>"; };
 		5240DBA82256426600FD5CA8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5240DBAE22565BFD00FD5CA8 /* CacheService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheService.swift; sourceTree = "<group>"; };
+		5240DBB0225662A300FD5CA8 /* CacheServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CacheServiceTests.swift; sourceTree = "<group>"; };
 		5287D00922533CE40068B509 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		5287D00D225341370068B509 /* DZRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRError.swift; sourceTree = "<group>"; };
 		5287D012225352490068B509 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -218,6 +223,7 @@
 			children = (
 				5229AEF2225495490018E1CD /* NetworkService.swift */,
 				52CA94E222550523003BEB19 /* PlayerService.swift */,
+				5240DBAE22565BFD00FD5CA8 /* CacheService.swift */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -298,6 +304,7 @@
 				5240DB91225638A000FD5CA8 /* AlbumTests.swift */,
 				5240DB942256399F00FD5CA8 /* NetworkServiceTests.swift */,
 				5240DB9822563F1900FD5CA8 /* PlayerServiceTests.swift */,
+				5240DBB0225662A300FD5CA8 /* CacheServiceTests.swift */,
 				5240DB9B2256408900FD5CA8 /* DZRImageViewTests.swift */,
 				5C1A7D9C1A6558BC00092761 /* Supporting Files */,
 			);
@@ -468,6 +475,7 @@
 				5287D00E225341370068B509 /* DZRError.swift in Sources */,
 				52CA94E322550523003BEB19 /* PlayerService.swift in Sources */,
 				5287D02F2253964A0068B509 /* DZRFonts.swift in Sources */,
+				5240DBAF22565BFD00FD5CA8 /* CacheService.swift in Sources */,
 				5C1A7D881A6558BB00092761 /* AppDelegate.m in Sources */,
 				5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */,
 				52EE47A12254D31000D8409B /* DZRImageView.swift in Sources */,
@@ -489,8 +497,10 @@
 				5240DB952256399F00FD5CA8 /* NetworkServiceTests.swift in Sources */,
 				5240DB96225639E400FD5CA8 /* NetworkService.swift in Sources */,
 				5240DB8D225636B500FD5CA8 /* Artist.swift in Sources */,
+				5240DBB2225662D400FD5CA8 /* CacheService.swift in Sources */,
 				5240DB8C2256316900FD5CA8 /* ArtistTests.swift in Sources */,
 				5240DB90225637B700FD5CA8 /* Track.swift in Sources */,
+				5240DBB1225662A300FD5CA8 /* CacheServiceTests.swift in Sources */,
 				5240DB9922563F1900FD5CA8 /* PlayerServiceTests.swift in Sources */,
 				5240DB9A22563F2200FD5CA8 /* PlayerService.swift in Sources */,
 				5240DB9722563A0200FD5CA8 /* DZRError.swift in Sources */,

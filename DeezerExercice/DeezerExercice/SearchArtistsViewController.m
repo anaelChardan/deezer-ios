@@ -236,6 +236,11 @@
     return CGSizeMake(UIScreen.mainScreen.bounds.size.width - 16, 60);
 }
 
+-(void)scrollViewWillBeginDragging:(UIScrollView *)scrollView
+{
+    [_searchBar resignFirstResponder];
+}
+
 #pragma - PrepareForSegue
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
