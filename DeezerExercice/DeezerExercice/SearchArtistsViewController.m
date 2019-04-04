@@ -166,7 +166,6 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    NSLog(@"%lu", (unsigned long)[[self.viewModel.artists objectForKey: [self.viewModel sectionNameWith:section]] count]);
     return [[self.viewModel.artists objectForKey: [self.viewModel sectionNameWith:section]] count];
 }
 
