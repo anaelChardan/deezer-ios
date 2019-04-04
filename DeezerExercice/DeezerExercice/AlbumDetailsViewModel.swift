@@ -88,9 +88,7 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                 switch result {
                 case .success(let tracks):
                     var newTracks: [String:[Track]] = [:]
-                    
-                    //TODO add comments
-                    
+                                        
                     tracks.data.forEach {
                         newTracks["\($0.diskNumber)"] = []
                     }

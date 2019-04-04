@@ -76,9 +76,7 @@ import Foundation
                     switch result {
                     case .success(let artists):
                         var newArtists: [String:[Artist]] = [:]
-                        
-                        //TODO add comments
-                        
+                                                
                         newArtists["populars"] = []
                         newArtists["others"] = []
                         

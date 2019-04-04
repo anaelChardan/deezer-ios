@@ -95,7 +95,7 @@
     
     [self setTitle:@"Artists"];
     
-    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(loop) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(checkIfWeNeedToDoARequest) userInfo:nil repeats:YES];
     
 }
 
@@ -107,8 +107,7 @@
 }
 
 #pragma - Methods
-
-- (void)loop
+- (void)checkIfWeNeedToDoARequest
 {
     if (![self.viewModel.lastQueryString isEqualToString:self.searchBar.text]) {
         [self.viewModel searchArtistsWithQuery:self.searchBar.text];
