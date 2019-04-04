@@ -9,6 +9,13 @@
 import UIKit
 
 @objc extension UIView {
+    
+    /**
+     Add a gradient background color to the view. From top to bottom.
+     
+     - parameters:
+        - colors: Colors wanted for the gradient.
+     */
     func gradient(colors: [UIColor]) {
         let gradientLayer = CAGradientLayer()
         gradientLayer.frame = bounds

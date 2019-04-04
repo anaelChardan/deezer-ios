@@ -14,6 +14,14 @@ import UIKit
     private var stringUrl: String?
     
     // MARK: - Methods
+    
+    /**
+     Load an image from a remote URL.
+     
+     - parameters:
+        - stringUrl: The url where the image is located online.
+        - completionSuccess: Code that will be executed in case of success.
+     */
     @objc func loadAsync(withStringUrl stringUrl: String, completionSuccess: (() -> Void)?) {
         self.stringUrl = stringUrl
         self.image = nil
