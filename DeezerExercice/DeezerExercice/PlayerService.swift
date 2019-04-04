@@ -10,6 +10,10 @@ import AVFoundation
 
 protocol PlayerServiceProtocol: class {
     
+    // MARK: - Properties
+    var isPlaying: Bool { get }
+    
+    // MARK: - Methods
     func play(withStringUrl stringUrl: String)
     func pause()
     
@@ -18,6 +22,10 @@ protocol PlayerServiceProtocol: class {
 final class PlayerService: PlayerServiceProtocol {
     
     // MARK: - Properties
+    var isPlaying: Bool {
+        return self.player?.rate != 0 && self.player?.error == nil
+    }
+    
     static let shared: PlayerServiceProtocol = PlayerService()
     
     private var player: AVPlayer?
