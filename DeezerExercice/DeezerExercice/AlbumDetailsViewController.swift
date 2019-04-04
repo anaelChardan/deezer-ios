@@ -135,7 +135,7 @@ extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
         self.fansValueLabel.text = String(format: "%d", locale: Locale.current, album.fans)
         
         self.viewModel?.loadTracks(withAlbumId: album.identifier)
-        self.coverDZRImageView.loadAsync(withStringUrl: album.coverBig) { [weak self] in
+        self.coverDZRImageView.loadAsync(withStringUrl: album.coverUrlBig) { [weak self] in
             UIView.animate(withDuration: 0.2, animations: {
                 self?.coverDZRImageView.alpha = 1
                 

@@ -204,7 +204,7 @@
                                                                             forIndexPath:indexPath];
         Artist *artist = [[self.viewModel.artists objectForKey:[self.viewModel sectionNameWith:indexPath.section]] objectAtIndex:indexPath.row];
         
-        [cell display:artist.name withPictureUrl:artist.pictureUrl];
+        [cell display:artist.name withPictureUrl:artist.pictureUrlBig];
         
         return cell;
     }
@@ -213,7 +213,7 @@
                                                                         forIndexPath:indexPath];
     Artist *artist = [[self.viewModel.artists objectForKey:[self.viewModel sectionNameWith:indexPath.section]] objectAtIndex:indexPath.row];
     
-    [cell displayWithName:artist.name pictureUrl:artist.pictureUrl];
+    [cell displayWithName:artist.name pictureUrl:artist.pictureUrlBig];
     
     return cell;
 }
