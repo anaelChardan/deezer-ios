@@ -24,12 +24,28 @@ class DeezerExerciceUITests: XCTestCase {
     func testCanShowAlbumOfDavidGuetta() {
         app.buttons["searchButton"].tap()
         app.navigationBars.element.typeText("David Guetta")
-        app.staticTexts["David Guetta"].tap()
         
-        XCTAssertTrue(app.staticTexts["Flames"].exists, "Flames track should be display")
-        XCTAssertTrue(app.staticTexts["7"].exists, "Album title should be display")
-        XCTAssertTrue(app.staticTexts[String(format: "%d", locale: Locale.current, 73671)].exists, "Fans number should be display")
-        XCTAssertTrue(app.staticTexts["14/09/2018"].exists, "Release should be display or not well formated")
+        let davidGuettaStaticText = app.staticTexts["David Guetta"]
+        
+        let existsPredicate = NSPredicate(format: "exists == 1")
+        
+        expectation(for: existsPredicate, evaluatedWith: davidGuettaStaticText, handler: nil)
+        waitForExpectations(timeout: 5, handler: nil)
+        
+        davidGuettaStaticText.tap()
+        
+        let albumTitleLabel = app.staticTexts["albumTitleLabel"]
+        let fansValueLabel = app.staticTexts["fansValueLabel"]
+        let releaseDateValueLabel = app.staticTexts["releaseDateValueLabel"]
+        
+        expectation(for: existsPredicate, evaluatedWith: albumTitleLabel, handler: nil)
+        expectation(for: existsPredicate, evaluatedWith: fansValueLabel, handler: nil)
+        expectation(for: existsPredicate, evaluatedWith: releaseDateValueLabel, handler: nil)
+        waitForExpectations(timeout: 30, handler: nil)
+        
+        XCTAssertTrue(albumTitleLabel.exists, "Album title should be display")
+        XCTAssertTrue(fansValueLabel.exists, "Album fans number should be display")
+        XCTAssertTrue(releaseDateValueLabel.exists, "Release date should be display")
     }
 
 }

@@ -44,6 +44,7 @@ final class AlbumDetailsViewController: UIViewController {
             titleLabel.textColor = DZRColors.white
             titleLabel.textAlignment = .center
             titleLabel.alpha = 0
+            titleLabel.accessibilityLabel = "albumTitleLabel"
         }
     }
     
@@ -53,6 +54,7 @@ final class AlbumDetailsViewController: UIViewController {
             fansValueLabel.textColor = DZRColors.pink
             fansValueLabel.font = DZRFonts.medium
             fansValueLabel.alpha = 0
+            fansValueLabel.accessibilityLabel = "fansValueLabel"
         }
     }
     
@@ -71,6 +73,7 @@ final class AlbumDetailsViewController: UIViewController {
             releaseDateValueLabel.textColor = DZRColors.pink
             releaseDateValueLabel.font = DZRFonts.medium
             releaseDateValueLabel.alpha = 0
+            releaseDateValueLabel.accessibilityLabel = "releaseDateValueLabel"
         }
     }
     
