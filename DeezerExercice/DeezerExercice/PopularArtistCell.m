@@ -1,13 +1,13 @@
 //
-//  ArtistCell.m
+//  PopularArtistCell.m
 //  DeezerExercice
 //  Copyright (c) 2015 Deezer. All rights reserved.
 //
 
-#import "ArtistCell.h"
+#import "PopularArtistCell.h"
 #import "DeezerExercice-Swift.h"
 
-@interface ArtistCell ()
+@interface PopularArtistCell ()
 
 @property (weak, nonatomic) IBOutlet DZRImageView *artistDZRImageView;
 @property (weak, nonatomic) IBOutlet UILabel *artistNameLabel;
@@ -15,7 +15,7 @@
 
 @end
 
-@implementation ArtistCell
+@implementation PopularArtistCell
 
 #pragma - Outlets -
 
@@ -52,22 +52,18 @@
 {
     [self.artistNameLabel setText:name];
     
-    dispatch_async(dispatch_get_main_queue(), ^{
+    [UIView animateWithDuration:0.2 animations:^{
+        [self.artistNameLabel setAlpha:1];
+        
+        [self layoutIfNeeded];
+    }];
+        
+    [self.artistDZRImageView loadAsyncWithStringUrl:pictureUrl completionSuccess:^{
         [UIView animateWithDuration:0.2 animations:^{
-            [self.artistNameLabel setAlpha:1];
+            [self->_artistDZRImageView setAlpha:1];
             
             [self layoutIfNeeded];
         }];
-    });
-        
-    [self.artistDZRImageView loadAsyncWithStringUrl:pictureUrl completionSuccess:^{
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [UIView animateWithDuration:0.2 animations:^{
-                [self->_artistDZRImageView setAlpha:1];
-                
-                [self layoutIfNeeded];
-            }];
-        });
     }];
 }
 

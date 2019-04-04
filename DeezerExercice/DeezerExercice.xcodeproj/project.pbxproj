@@ -13,6 +13,7 @@
 		207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */; };
 		5229AEF3225495490018E1CD /* NetworkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229AEF2225495490018E1CD /* NetworkService.swift */; };
 		5229AEF5225498D70018E1CD /* SearchArtistsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5229AEF4225498D70018E1CD /* SearchArtistsViewModel.swift */; };
+		5240DB762255F4AD00FD5CA8 /* OtherArtistCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5240DB752255F4AD00FD5CA8 /* OtherArtistCell.swift */; };
 		5287D00A22533CE40068B509 /* Album.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00922533CE40068B509 /* Album.swift */; };
 		5287D00E225341370068B509 /* DZRError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D00D225341370068B509 /* DZRError.swift */; };
 		5287D013225352490068B509 /* UIViewController+Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5287D012225352490068B509 /* UIViewController+Alert.swift */; };
@@ -31,7 +32,7 @@
 		5C1A7D931A6558BB00092761 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5C1A7D911A6558BB00092761 /* LaunchScreen.xib */; };
 		5C1A7DAA1A65897200092761 /* SearchArtistsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */; };
 		5C2E661C1A67C3D500607EC5 /* DZRArtistTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C2E661B1A67C3D500607EC5 /* DZRArtistTest.m */; };
-		5C3304271A6E99B500561778 /* ArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3304261A6E99B500561778 /* ArtistCell.m */; };
+		5C3304271A6E99B500561778 /* PopularArtistCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 5C3304261A6E99B500561778 /* PopularArtistCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		207BDDC5225290AB006F938C /* AlbumDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumDetailsViewController.swift; sourceTree = "<group>"; };
 		5229AEF2225495490018E1CD /* NetworkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkService.swift; sourceTree = "<group>"; };
 		5229AEF4225498D70018E1CD /* SearchArtistsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchArtistsViewModel.swift; sourceTree = "<group>"; };
+		5240DB752255F4AD00FD5CA8 /* OtherArtistCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OtherArtistCell.swift; sourceTree = "<group>"; };
 		5287D00922533CE40068B509 /* Album.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Album.swift; sourceTree = "<group>"; };
 		5287D00D225341370068B509 /* DZRError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DZRError.swift; sourceTree = "<group>"; };
 		5287D012225352490068B509 /* UIViewController+Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alert.swift"; sourceTree = "<group>"; };
@@ -76,8 +78,8 @@
 		5C1A7DA81A65897200092761 /* SearchArtistsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SearchArtistsViewController.h; sourceTree = "<group>"; };
 		5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SearchArtistsViewController.m; sourceTree = "<group>"; };
 		5C2E661B1A67C3D500607EC5 /* DZRArtistTest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DZRArtistTest.m; sourceTree = "<group>"; };
-		5C3304251A6E99B500561778 /* ArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ArtistCell.h; sourceTree = "<group>"; };
-		5C3304261A6E99B500561778 /* ArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ArtistCell.m; sourceTree = "<group>"; };
+		5C3304251A6E99B500561778 /* PopularArtistCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PopularArtistCell.h; sourceTree = "<group>"; };
+		5C3304261A6E99B500561778 /* PopularArtistCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PopularArtistCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,8 +148,9 @@
 				5229AEF4225498D70018E1CD /* SearchArtistsViewModel.swift */,
 				5C1A7DA81A65897200092761 /* SearchArtistsViewController.h */,
 				5C1A7DA91A65897200092761 /* SearchArtistsViewController.m */,
-				5C3304251A6E99B500561778 /* ArtistCell.h */,
-				5C3304261A6E99B500561778 /* ArtistCell.m */,
+				5C3304251A6E99B500561778 /* PopularArtistCell.h */,
+				5C3304261A6E99B500561778 /* PopularArtistCell.m */,
+				5240DB752255F4AD00FD5CA8 /* OtherArtistCell.swift */,
 				52CA94E82255E5B8003BEB19 /* SearchArtistsHeaderView.swift */,
 			);
 			name = SearchArtists;
@@ -366,6 +369,7 @@
 				5287D02B22538E6E0068B509 /* DZRColors.swift in Sources */,
 				5229AEF5225498D70018E1CD /* SearchArtistsViewModel.swift in Sources */,
 				5C1A7DAA1A65897200092761 /* SearchArtistsViewController.m in Sources */,
+				5240DB762255F4AD00FD5CA8 /* OtherArtistCell.swift in Sources */,
 				207BDDC42252906D006F938C /* AlbumDetailsViewModel.swift in Sources */,
 				5287D00E225341370068B509 /* DZRError.swift in Sources */,
 				52CA94E322550523003BEB19 /* PlayerService.swift in Sources */,
@@ -377,7 +381,7 @@
 				5C1A7D851A6558BB00092761 /* main.m in Sources */,
 				5287D015225358F60068B509 /* TrackCell.swift in Sources */,
 				5287D02722537D540068B509 /* Artist.swift in Sources */,
-				5C3304271A6E99B500561778 /* ArtistCell.m in Sources */,
+				5C3304271A6E99B500561778 /* PopularArtistCell.m in Sources */,
 				207BDDC6225290AB006F938C /* AlbumDetailsViewController.swift in Sources */,
 				207BDDBF22528C67006F938C /* Track.swift in Sources */,
 			);

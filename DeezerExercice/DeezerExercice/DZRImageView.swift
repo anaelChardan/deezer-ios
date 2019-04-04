@@ -8,6 +8,8 @@
 
 import UIKit
 
+//TODO load image in bad quality and after in hd
+
 @objcMembers class DZRImageView: UIImageView {
     
     // MARK: - Properties
