@@ -97,6 +97,11 @@ protocol AlbumDetailsViewModelProtocol: class {
      - indexPath: Identify the music.
      */
     func trackCellDidTapped(at indexPath: IndexPath)
+    
+    /**
+     Stop the music when the view will Disappear.
+     */
+    func viewWillDisappear()
 }
 
 final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
@@ -187,6 +192,14 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
                 .shared
                 .play(withStringUrl: playingTrack.previewUrl)
             self.playingTrack = playingTrack
+        }
+    }
+    
+    func viewWillDisappear() {
+        if (PlayerService.shared.isPlaying) {
+            PlayerService
+                .shared
+                .pause()
         }
     }
 }

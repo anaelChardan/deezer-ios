@@ -126,6 +126,12 @@ final class AlbumDetailsViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(true, animated: true)
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        self.viewModel?.viewWillDisappear()
+    }
+    
     // MARK: - Actions
     
     /**

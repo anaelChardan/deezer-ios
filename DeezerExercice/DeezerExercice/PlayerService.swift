@@ -48,6 +48,12 @@ final class PlayerService: PlayerServiceProtocol {
     func play(withStringUrl stringUrl: String) {
         guard let url = URL(string: stringUrl) else { return }
         
+        do {
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category.playback)
+        } catch {
+            print(error)
+        }
+        
         self.player = AVPlayer(url: url)
         self.player?.play()
     }

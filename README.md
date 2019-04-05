@@ -3,6 +3,8 @@
 [![Language](https://img.shields.io/badge/Swift-5.0-brightgreen.svg)](http://swift.org)
 [![Xcode](https://img.shields.io/badge/Xcode-10.2-brightgreen.svg)](https://developer.apple.com/download/more/)
 
+80 % Swift, 20 % Objective-C
+
 ## ✉️ Informations de contact
 
 - Nom : Maxime Maheo
@@ -14,22 +16,22 @@ Entre 14h et 20h.
 
 ## 🏛 Architecture
 
-J'ai choisi d'utiliser une architecture MVVM plutôt qu'une architecture VIPER qui serait trop compliqué pour un projet de cette taille.
+J'ai choisi d'utiliser une architecture MVVM plutôt qu'une architecture VIPER qui serait trop compliquée pour un projet de cette taille.
 L'utilisation des delegates pour prévenir la mise à jour est utilisé pour maintenir la compatibilité entre le Swift et l'Objective-c. Cependant, le dynamic binding peut être utilisé mais on perd la similarité entre le code Objective-c (Delegate) et Swift (Dynamic bindings). Un exemple de classe dynamic est en [annexe 1](#annexe-1)
 
 ## 🚅 Optimisations diverses
 
 - Mise en cache (mémoire) des images. Elles ne sont pas retéléchargées si elles sont dans le cache
-- Quand on cherche un artiste, au lieu de faire une requête au serveur dès que le nom de l'artiste a changé, on va regarder toutes les 500ms si le texte de recherche est différent de la dernière recherche envoyé au serveur. Cela permet de réduire drastiquement le nombre de recherche envoyé au serveur (économisation de batterie). De plus, correspond plus à l'utilisation souhaité, envoyer la requête quand l'utilisateur a finit de taper le nom de l'artiste.
+- Quand on cherche un artiste, au lieu de faire une requête au serveur dès que le nom de l'artiste a changé, on va regarder toutes les 500ms si le texte de recherche est différent de la dernière recherche envoyé au serveur. Cela permet de réduire drastiquement le nombre de recherches envoyées au serveur (économisation de batterie). De plus, cela correspond plus à l'utilisation souhaité, envoyer la requête quand l'utilisateur a finit de taper le nom de l'artiste.
 - L'application est disponible en Français et en Anglais.
-- Toutes les requêtes réseaux sont éxécutés dans un thread en background. Le reste du code est éxécuté dans le thread UI.
+- Toutes les requêtes réseaux sont éxécutées dans un thread en background. Le reste du code est éxécuté dans le thread UI.
 - Chargement des images HD pour les artistes populaires, sinon en SD pour les autres artistes.
 - Tests unitaires pour les models et les services.
 - Test UI pour vérifier que le flow de l'application correspond à celui qui est souhaité.
 
 ## 👍 Bonnes pratiques
 
-- Utilisation des protocols pour exposer que les methodes souhaitées.
+- Utilisation des protocols pour n'exposer que les methodes souhaitées.
 - Utilisation du type `Result` de Swift 5.0 pour les requêtes réseaux.
 - Utilisation de Singleton pour avoir le code centralisé (notament le réseau, le player de music et la gestion du cache).
 - Ajout de la documentation Apple pour les méthodes et les propriétés.
@@ -37,7 +39,7 @@ L'utilisation des delegates pour prévenir la mise à jour est utilisé pour mai
 
 ## 💡 Améliorations possibles
 
-- Affichage d'une image en faible qualité en attedant l'image HD.
+- Affichage d'une image en faible qualité en attendant l'image HD.
 - Mise en cache des images en mémoire mais aussi en disque.
 - Mise en cache des requêtes réseaux.
 
