@@ -28,4 +28,3 @@ import Foundation
         case fans = "nb_fan"
     }
 }
-

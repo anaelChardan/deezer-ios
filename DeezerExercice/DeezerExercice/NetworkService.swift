@@ -50,7 +50,7 @@ final class NetworkService: NetworkServiceProtocol {
             return
         }
                 
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
                 return
@@ -71,7 +71,7 @@ final class NetworkService: NetworkServiceProtocol {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
                 return
@@ -95,7 +95,7 @@ final class NetworkService: NetworkServiceProtocol {
             return
         }
         
-        URLSession.shared.dataTask(with: url) { (data, response, error) in
+        URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
                 return

@@ -22,7 +22,7 @@ import UIKit
         - stringUrl: The url where the image is located online.
         - completionSuccess: Code that will be executed in case of success in the main thread.
      */
-    @objc func loadAsync(withStringUrl stringUrl: String, completionSuccess: (() -> Void)?) {
+    func loadAsync(withStringUrl stringUrl: String, completionSuccess: (() -> Void)?) {
         self.stringUrl = stringUrl
         self.image = nil
         

@@ -27,4 +27,3 @@ struct Album: Codable {
         case releaseDate = "release_date"
     }
 }
-

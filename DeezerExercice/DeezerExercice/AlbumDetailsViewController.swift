@@ -173,7 +173,7 @@ extension AlbumDetailsViewController: AlbumDetailsViewModelDelegate {
         })
     }
     
-    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String : [Track]]) {
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String: [Track]]) {
         self.tableView.reloadData()
     }
     

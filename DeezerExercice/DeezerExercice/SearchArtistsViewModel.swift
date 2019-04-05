@@ -97,7 +97,7 @@ import Foundation
 @objcMembers final class SearchArtistsViewModel: NSObject, SearchArtistsViewModelProtocol {
     
     // MARK: - Properties
-    var artists: [String :[Artist]]? {
+    var artists: [String: [Artist]]? {
         didSet {
             if let artists = self.artists {
                 self.delegate?.searchArtistsViewModel(self, artistsValueChanged: artists)
@@ -138,7 +138,7 @@ import Foundation
                 .fetchArtists(withQuery: query) { [weak self] result in
                     switch result {
                     case .success(let artists):
-                        var newArtists: [String:[Artist]] = [:]
+                        var newArtists: [String: [Artist]] = [:]
                                                 
                         newArtists["populars"] = []
                         newArtists["others"] = []

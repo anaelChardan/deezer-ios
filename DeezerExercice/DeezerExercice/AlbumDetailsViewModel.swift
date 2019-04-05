@@ -25,7 +25,7 @@ protocol AlbumDetailsViewModelDelegate: class {
         - albumDetailsViewModel: The view model that update the value.
         - tracks: Tracks that has been updated.
      */
-    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String:[Track]])
+    func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, tracksValueChanged tracks: [String: [Track]])
     
     /**
      Update view with the new playing music data.
@@ -44,7 +44,6 @@ protocol AlbumDetailsViewModelDelegate: class {
         - errorMessage: Error message that has been updated.
      */
     func albumDetailsViewModel(_ albumDetailsViewModel: AlbumDetailsViewModel, errorMessageValueChanged errorMessage: String)
-    
 }
 
 protocol AlbumDetailsViewModelProtocol: class {
@@ -155,7 +154,7 @@ final class AlbumDetailsViewModel: AlbumDetailsViewModelProtocol {
             .fetchTracks(withAlbumId: id) { [weak self] result in
                 switch result {
                 case .success(let tracks):
-                    var newTracks: [String:[Track]] = [:]
+                    var newTracks: [String: [Track]] = [:]
                                         
                     tracks.data.forEach {
                         newTracks["\($0.diskNumber)"] = []
