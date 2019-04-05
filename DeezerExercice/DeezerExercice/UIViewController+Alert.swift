@@ -17,8 +17,8 @@ import UIKit
         - message: String message to explain the error. Can be nil. In this case message is just "Error".
     */
     func showAlertError(message: String?) {
-        let alert = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+        let alert = UIAlertController(title: DZRTranslation.defaultError, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: DZRTranslation.defaultOk, style: .cancel, handler: nil))
         present(alert, animated: true, completion: nil)
     }
     

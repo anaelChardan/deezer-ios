@@ -1,0 +1,42 @@
+
+/* Class = "UILabel"; text = "Label"; ObjectID = "B0G-d4-CdU"; */
+"B0G-d4-CdU.text" = "Label";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "Ekd-Sz-AIy"; */
+"Ekd-Sz-AIy.text" = "Title";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "JsI-T0-7ed"; */
+"JsI-T0-7ed.text" = "Title";
+
+/* Class = "UILabel"; text = "Duration"; ObjectID = "WxR-Kp-IQJ"; */
+"WxR-Kp-IQJ.text" = "Duration";
+
+/* Class = "UILabel"; text = "Fans number"; ObjectID = "XyF-Od-WmC"; */
+"XyF-Od-WmC.text" = "Fans number";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "YAA-6U-wEj"; */
+"YAA-6U-wEj.text" = "Title";
+
+/* Class = "UIButton"; normalTitle = "Back"; ObjectID = "Yut-pd-n63"; */
+"Yut-pd-n63.normalTitle" = "Back";
+
+/* Class = "UILabel"; text = "TrackPosition"; ObjectID = "b8E-a0-WAB"; */
+"b8E-a0-WAB.text" = "TrackPosition";
+
+/* Class = "UIButton"; normalTitle = "Search button"; ObjectID = "ePW-HS-uLX"; */
+"ePW-HS-uLX.normalTitle" = "Search button";
+
+/* Class = "UILabel"; text = "Release label"; ObjectID = "gM4-7I-Gzf"; */
+"gM4-7I-Gzf.text" = "Release label";
+
+/* Class = "UILabel"; text = "Fans label"; ObjectID = "tqy-kx-tyU"; */
+"tqy-kx-tyU.text" = "Fans label";
+
+/* Class = "UILabel"; text = "Information label"; ObjectID = "wsl-e4-TrU"; */
+"wsl-e4-TrU.text" = "Information label";
+
+/* Class = "UILabel"; text = "Release date"; ObjectID = "xoR-Ni-XPa"; */
+"xoR-Ni-XPa.text" = "Release date";
+
+/* Class = "UILabel"; text = "Title"; ObjectID = "zZU-od-dy9"; */
+"zZU-od-dy9.text" = "Title";

@@ -1,0 +1,23 @@
+/* 
+  Localizable.strings
+  DeezerExercice
+
+  Created by Maxime Maheo on 05/04/2019.
+  Copyright © 2019 Deezer. All rights reserved.
+*/
+
+// MARK: - Default
+"default_error" = "Error";
+"default_ok" = "Ok";
+
+// MARK: - Album detail view
+"album_detail_fans" = "Fans";
+"album_detail_release_date" = "Release date";
+
+// MARK: - Search artists view
+"search_artists_searchbar_placeholder" = "Enter an artist name";
+"search_artists_information_search_empty" = "Search an artist. For example U2, Queen, Muse ...";
+"search_artists_information_search_no_result" = "Your search returned no result, try another name";
+"search_artists_button_search" = "Search !";
+"search_artists_populars_header_title" = "Populars";
+"search_artists_others_header_title" = "Others";

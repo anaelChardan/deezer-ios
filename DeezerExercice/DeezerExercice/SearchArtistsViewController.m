@@ -26,6 +26,7 @@
 - (void)setCollectionView:(UICollectionView *)collectionView
 {
     _collectionView = collectionView;
+    
     [_collectionView setBackgroundColor:DZRColors.purple];
     [_collectionView setDelegate:self];
     
@@ -41,9 +42,10 @@
 - (void)setSearchBar:(UISearchBar *)searchBar
 {
     _searchBar = searchBar;
+    
     [_searchBar setTranslucent:NO];
     [_searchBar setBarTintColor:DZRColors.purple];
-    [_searchBar setPlaceholder:@"Enter an artist name"];
+    [_searchBar setPlaceholder: DZRTranslation.searchArtistsSearchBarPlaceholder];
     [_searchBar setDelegate:self];
     [_searchBar setShowsCancelButton:YES animated:YES];
     
@@ -57,7 +59,7 @@
 {
     _informationLabel = informationLabel;
     
-    [_informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
+    [_informationLabel setText: DZRTranslation.searchArtistsInformationSearchEmpty];
     [_informationLabel setTextColor:DZRColors.white];
     [_informationLabel setNumberOfLines:2];
     [_informationLabel setTextAlignment:NSTextAlignmentCenter];
@@ -68,7 +70,7 @@
 {
     _searchButton = searchButton;
     
-    [_searchButton setTitle:@"Search !" forState:UIControlStateNormal];
+    [_searchButton setTitle:DZRTranslation.searchArtistsButtonSearch forState:UIControlStateNormal];
     [_searchButton setTitleColor:DZRColors.white forState:UIControlStateNormal];
     [_searchButton setBackgroundColor:DZRColors.pink];
     [_searchButton.layer setCornerRadius:4];
@@ -92,8 +94,6 @@
     [self.navigationController.navigationBar setBarTintColor:DZRColors.purple];
     [self.navigationController.navigationBar setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:DZRColors.white, NSForegroundColorAttributeName,nil]];
     [self.navigationController.navigationBar setTranslucent:NO];
-    
-    [self setTitle:@"Artists"];
     
     //Check every 500ms if the last query sent to the server is different from the text in the search bar.
     //If this is different, do a new request with text in the search bar.
@@ -137,7 +137,7 @@
     // If search has no result, show a message to tell that a bad query.
     if(artists.count <= 0 && [self.searchBar.text length] > 0) {
         [UIView animateWithDuration:0.2 animations:^{
-            [self.informationLabel setText:@"Your search returned no results, try another name"];
+            [self.informationLabel setText:DZRTranslation.searchArtistsInformationSearchNoResult];
             [self.informationLabel setAlpha:1];
 
             [self.view layoutIfNeeded];
@@ -147,7 +147,7 @@
     // If there is no text in search bar, show a message to search an artist.
     else if (artists.count <= 0 && [self.searchBar.text length] <= 0) {
         [UIView animateWithDuration:0.2 animations:^{
-            [self.informationLabel setText:@"Search an artist. For example U2, Queen, Muse ..."];
+            [self.informationLabel setText:DZRTranslation.searchArtistsInformationSearchEmpty];
             [self.informationLabel setAlpha:1];
             [self.searchButton setAlpha:1];
             
@@ -209,7 +209,7 @@
                                                     withReuseIdentifier:@"SearchArtistsHeaderView"
                                                            forIndexPath:indexPath];
         
-        [header displayWithTitle: indexPath.section == 0 ? @"Populars" : @"Others"];
+        [header displayWithTitle: indexPath.section == 0 ? DZRTranslation.searchArtistsPopularsHeaderTitle : DZRTranslation.searchArtistsOthersHeaderTitle];
     }
     
     return header;

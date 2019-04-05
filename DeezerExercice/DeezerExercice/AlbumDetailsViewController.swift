@@ -60,7 +60,7 @@ final class AlbumDetailsViewController: UIViewController {
     
     @IBOutlet weak var fansLabel: UILabel! {
         didSet {
-            fansLabel.text = "Fans"
+            fansLabel.text = DZRTranslation.albumDetailFans
             fansLabel.textColor = DZRColors.grey.withAlphaComponent(0.5)
             fansLabel.font = DZRFonts.smallRegular
             fansLabel.alpha = 0
@@ -79,7 +79,7 @@ final class AlbumDetailsViewController: UIViewController {
     
     @IBOutlet weak var releaseDateLabel: UILabel! {
         didSet {
-            releaseDateLabel.text = "Release date"
+            releaseDateLabel.text = DZRTranslation.albumDetailReleaseDate
             releaseDateLabel.textColor = DZRColors.grey.withAlphaComponent(0.5)
             releaseDateLabel.font = DZRFonts.smallRegular
             releaseDateLabel.alpha = 0
