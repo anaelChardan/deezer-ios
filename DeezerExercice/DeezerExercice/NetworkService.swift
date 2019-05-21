@@ -44,12 +44,12 @@ final class NetworkService: NetworkServiceProtocol {
     static let shared: NetworkServiceProtocol = NetworkService()
     
     // MARK: - Methods
-    func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void) {
-        guard let url = URL(string: "https://api.deezer.com/artist/\(id)/albums") else {
+    private func request<T>(with stringUrl: String, completion: @escaping (Result<T, DZRError>) -> Void) where T: Codable {
+        guard let url = URL(string: stringUrl) else {
             completion(.failure(DZRError.invalidURL))
             return
         }
-                
+        
         URLSession.shared.dataTask(with: url) { (data, _, error) in
             guard let data = data, error == nil else {
                 DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
@@ -57,56 +57,25 @@ final class NetworkService: NetworkServiceProtocol {
             }
             
             do {
-                let albums = try JSONDecoder().decode(AlbumList.self, from: data)
-                DispatchQueue.main.async { completion(.success(albums)) }
+                let objects = try JSONDecoder().decode(T.self, from: data)
+                DispatchQueue.main.async { completion(.success(objects)) }
             } catch let error {
                 DispatchQueue.main.async { completion(.failure(DZRError.error(error))) }
             }
         }.resume()
+    }
+    
+    func fetchAlbums(withArtistId id: Int, completion: @escaping (Result<AlbumList, DZRError>) -> Void) {
+        request(with: "https://api.deezer.com/artist/\(id)/albums", completion: completion)
     }
     
     func fetchTracks(withAlbumId id: Int, completion: @escaping (Result<TrackList, DZRError>) -> Void) {
-        guard let url = URL(string: "https://api.deezer.com/album/\(id)/tracks") else {
-            completion(.failure(DZRError.invalidURL))
-            return
-        }
-        
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
-            guard let data = data, error == nil else {
-                DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
-                return
-            }
-            
-            do {
-                let tracks = try JSONDecoder().decode(TrackList.self, from: data)
-                DispatchQueue.main.async { completion(.success(tracks)) }
-            } catch let error {
-                DispatchQueue.main.async { completion(.failure(DZRError.error(error))) }
-            }
-        }.resume()
+        request(with: "https://api.deezer.com/album/\(id)/tracks", completion: completion)
     }
     
     func fetchArtists(withQuery query: String, completion: @escaping (Result<ArtistList, DZRError>) -> Void) {
-        guard
-            let stringUrl = "http://api.deezer.com/search/artist?q=\(query)&limit=150".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed),
-            let url = URL(string: stringUrl)
-        else {
-            completion(.failure(DZRError.invalidURL))
-            return
-        }
+        guard let stringUrl = "http://api.deezer.com/search/artist?q=\(query)&limit=150".addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) else { return }
         
-        URLSession.shared.dataTask(with: url) { (data, _, error) in
-            guard let data = data, error == nil else {
-                DispatchQueue.main.async { completion(.failure(DZRError.error(error!))) }
-                return
-            }
-            
-            do {
-                let artists = try JSONDecoder().decode(ArtistList.self, from: data)
-                DispatchQueue.main.async { completion(.success(artists)) }
-            } catch let error {
-                DispatchQueue.main.async { completion(.failure(DZRError.error(error))) }
-            }
-        }.resume()
+        request(with: stringUrl, completion: completion)
     }
 }
